@@ -30,7 +30,7 @@
         <ul id="navigations">
             <li>
             <!-- Change -->
-                <a href='#'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>
+                <a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>
             </li>
             <li>
                 <div class="dropdown">
@@ -49,7 +49,7 @@
                 <a href="#"><i class="bi bi-file-earmark-fill"></i> <b>About</b></a>
             </li>
             <li>
-                <a href="#" id="this_nav"><i class="bi bi-house-fill"></i> <b>Home</b></a>
+                <a href="homepage" id="this_nav"><i class="bi bi-house-fill"></i> <b>Home</b></a>
             </li>
             
             

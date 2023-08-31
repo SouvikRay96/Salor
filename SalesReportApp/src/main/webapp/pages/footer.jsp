@@ -32,8 +32,7 @@
     
 
     
-    <!-- Adding Script file -->
-    <script type="text/javascript" src="pages/script.js"></script>
+    
 	
 </body>
 </html>

@@ -5,7 +5,7 @@
     <welcome-file>homepage</welcome-file>
   </welcome-file-list>
   
-  <!-- HomePage Configuration -->
+  <!-- HomePage URL Configuration -->
   <servlet>
   	<servlet-name>homePage</servlet-name>
   	<jsp-file>/pages/index.jsp</jsp-file>
@@ -15,4 +15,16 @@
   	<servlet-name>homePage</servlet-name>
   	<url-pattern>/homepage</url-pattern>
   </servlet-mapping>
+  
+  <!-- Login-SignUp page URL Configuration -->
+  <servlet>
+  	<servlet-name>loginsignupPage</servlet-name>
+  	<jsp-file>/pages/loginsignup.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginsignupPage</servlet-name>
+  	<url-pattern>/loginpage</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
