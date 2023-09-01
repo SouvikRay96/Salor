@@ -1,0 +1,83 @@
+@charset "UTF-8";
+.loginform {
+  border-radius: 15px;
+  height: auto;
+  position: relative;
+  background-color: rgba(242, 242, 242, 0.7);
+  padding: 30px;
+  box-shadow: 0px 5px 15px 1px black;
+  width: 600px;
+  margin: auto;
+}
+
+.field {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+  position: absolute;
+  display:inline-block;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-image: linear-gradient(
+    45deg,
+    rgb(51, 139, 204),
+    rgb(78, 222, 222)
+   );
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  font-size: 18px
+}
+
+input[type="submit"]:hover {
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+}
+
+.label {
+  text-align: center;
+  text-decoration: blink;
+  text-shadow: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}

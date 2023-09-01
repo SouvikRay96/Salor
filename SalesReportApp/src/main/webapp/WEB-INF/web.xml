@@ -16,15 +16,31 @@
   	<url-pattern>/homepage</url-pattern>
   </servlet-mapping>
   
-  <!-- Login-SignUp page URL Configuration -->
+  <!-- Login page URL Configuration -->
   <servlet>
-  	<servlet-name>loginsignupPage</servlet-name>
-  	<jsp-file>/pages/loginsignup.jsp</jsp-file>
+  	<servlet-name>loginPage</servlet-name>
+  	<jsp-file>/pages/login.jsp</jsp-file>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>loginsignupPage</servlet-name>
+  	<servlet-name>loginPage</servlet-name>
   	<url-pattern>/loginpage</url-pattern>
   </servlet-mapping>
+  
+  <!-- Signup page URL Configuration -->
+  <servlet>
+  	<servlet-name>signupPage</servlet-name>
+  	<jsp-file>/pages/signup.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>signupPage</servlet-name>
+  	<url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
   
 </web-app>

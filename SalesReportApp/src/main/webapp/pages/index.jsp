@@ -29,7 +29,7 @@
                   	We can Edit, Insert and Delete Records in the Sales Report of the Organization.
                   	</p>
                   </div>
-                
+                <br><br>
                 <button class="btn">Read more</button>
                 </div>
           <!-- <div>
