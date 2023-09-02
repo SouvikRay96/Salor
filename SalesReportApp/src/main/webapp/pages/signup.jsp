@@ -35,6 +35,10 @@
 			<span id="ageError" style="color:red"></span>
 		    <input type="text" name="age" placeholder="Small/Medium/Large">
 		    
+		    <label for="fname" class="label">Name of the Owner</label><br>
+			<span id="ageError" style="color:red"></span>
+		    <input type="text" name="age" placeholder="Owner's Name">
+		    
 		    <label for="fname" class="label">User Password</label><br>
 			<span id="ageError" style="color:red"></span>
 		    <input type="password" name="age" placeholder="Enter Your Password">

@@ -38,6 +38,26 @@
   	<url-pattern>/register</url-pattern>
   </servlet-mapping>
   
+  <!-- Profile Page URL Configuration -->
+  <servlet>
+  	<servlet-name>Profile</servlet-name>
+  	<jsp-file>/pages/profile.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Profile</servlet-name>
+  	<url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

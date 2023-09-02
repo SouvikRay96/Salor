@@ -46,7 +46,7 @@
                 </div>
             </li>
             <li>
-                <a href="#"><i class="bi bi-file-earmark-fill"></i> <b>Profile</b></a>
+                <a href="profile"><i class="bi bi-file-earmark-fill"></i> <b>Profile</b></a>
             </li>
             <li>
                 <a href="homepage" id="this_nav"><i class="bi bi-house-fill"></i> <b>Home</b></a>

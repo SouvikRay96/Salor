@@ -5,7 +5,7 @@
   position: relative;
   background-color: rgba(242, 242, 242, 0.7);
   padding: 30px;
-  box-shadow: 0px 5px 15px 1px black;
+  box-shadow: 0px 5px 15px 1px rgb(0, 128, 192);
   width: 600px;
   margin: auto;
 }
@@ -80,4 +80,5 @@ input[type="submit"]:hover {
   text-shadow: black;
   font-size: 18px;
   font-family: "Poppins", sans-serif;
+  font-weight: bold;
 }
