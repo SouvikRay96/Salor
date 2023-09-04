@@ -7,20 +7,18 @@ public class SalorAccountsRegister {
 	private String orgName;
 	private String emailId;
 	private String address;
-	private int noShops;
 	private String orgSize;
 	private String ownerName;
 	private String password;
 	
 	
-	public SalorAccountsRegister(String userId, String orgName, String emailId, String address, int noShops, String orgSize,
+	public SalorAccountsRegister(String userId, String orgName, String emailId, String address, String orgSize,
 			String ownerName, String password) {
 		super();
 		this.setUserId(userId);
 		this.setOrgName(orgName);
 		this.setEmailId(emailId);
 		this.setAddress(address);
-		this.setNoShops(noShops);
 		this.setOrgSize(orgSize);
 		this.setOwnerName(ownerName);
 		this.setPassword(password);
@@ -48,12 +46,6 @@ public class SalorAccountsRegister {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public int getNoShops() {
-		return noShops;
-	}
-	public void setNoShops(int noShops) {
-		this.noShops = noShops;
 	}
 	public String getOrgSize() {
 		return orgSize;

@@ -1,10 +1,15 @@
 package com.salor.servlets;
 
 import java.io.IOException;
+import java.util.Random;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.salor.factory.SalorServiceFactory;
+import com.salor.service.SalorServiceInterface;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -31,9 +36,19 @@ public class SignUpServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String cnfpwd = request.getParameter("cnfpassword");
 		
+		//Creating SalorService Class Object
+		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
 		//Defining UserId variable
 		String userId = null;
-		
+		int min = 100,max = 1000;
+		Random rand = new Random();
+		int id = rand.nextInt(max-min+1)+min;
+		userId = "ORG"+id;
+		int flag = 0;
+		do {
+			String status = salorService.checkUserIdService(userId);
+			
+		}while(flag == 0);
 		
 	}
 

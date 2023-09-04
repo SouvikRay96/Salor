@@ -28,10 +28,6 @@
 			<span id="addressError" style="color:red"></span>
 		    <input type="text" name="address" placeholder="Enter full address">
 		    
-			<label for="fname" class="label">Number of Shops</label><br>
-			<span id="noshopsError" style="color:red"></span>
-		    <input type="text" name="noshops" placeholder="Enter number of shops">
-		    
 		    <label for="fname" class="label">Organization Size</label><br>
 			<span id="orgsizeError" style="color:red"></span>
 		    <input type="text" name="orgsize" placeholder="Small/Medium/Large">
