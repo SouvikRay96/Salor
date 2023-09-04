@@ -61,6 +61,17 @@
   	<url-pattern>/signupurl</url-pattern>
   </servlet-mapping>
   
+  <!-- LoginServlet URL Configuration -->
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>com.salor.servlets.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/loginurl</url-pattern>
+  </servlet-mapping>
+  
   
   
   

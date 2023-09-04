@@ -19,23 +19,23 @@
 			}
 		%>
 		
-		<form action="#" class="loginform" method = "post" onsubmit = "return validate(this)">
+		<form action="loginurl" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">User Login</h2>
     		<label for="fname" class="label">Name of the Organization</label><br>
-		    <span id="addressError" style="color:red"></span>
-		    <input type="text" name="address" placeholder="Enter Name of the Organization">
+		    <span id="orgNameError" style="color:red"></span>
+		    <input type="text" name="orgname" placeholder="Enter Name of the Organization">
 			
 		    <label for="fname" class="label">Email ID</label><br>
-		    <span id="addressError" style="color:red"></span>
-		    <input type="text" name="address" placeholder="Enter Email ID">
+		    <span id="emailidError" style="color:red"></span>
+		    <input type="text" name="emailid" placeholder="Enter Email ID">
 		    
 			<label for="fname" class="label">User ID</label><br>
-			<span id="ageError" style="color:red"></span>
-		    <input type="text" name="age" placeholder="Enter User ID">
+			<span id="useridError" style="color:red"></span>
+		    <input type="text" name="userid" placeholder="Enter User ID">
 		    
 		    <label for="fname" class="label">User Password</label><br>
-			<span id="ageError" style="color:red"></span>
-		    <input type="password" name="age" placeholder="Enter Your Password">
+			<span id="pwdError" style="color:red"></span>
+		    <input type="password" name="pwd" placeholder="Enter Your Password">
 		    
 		    
 
@@ -48,6 +48,9 @@
 		    <br><br>
 		    <input type="submit" value="Log-In">
 		</form>
+		
+		<!-- Form validations Logics -->
+		<script type="text/javascript" src="loginformvalidations.js"></script>
 		
 	<br><br>
 	    <%@include file="footer.jsp" %>
