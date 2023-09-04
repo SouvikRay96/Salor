@@ -31,6 +31,9 @@ public class SignUpServlet extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String cnfpwd = request.getParameter("cnfpassword");
 		
+		//Defining UserId variable
+		String userId = null;
+		
 		
 	}
 
