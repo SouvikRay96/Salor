@@ -12,8 +12,8 @@
 	<%@include file="header.jsp" %>
 	<br><br><br>
 	
-	
-		<form action="#" class="loginform" method = "post" onsubmit = "return validate(this)">
+		<span style="color:red">${errorMessage }</span>
+		<form action="signupurl" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">User Registration</h2>
     		
     		<label for="fname" class="label">Name of the Organization</label><br>

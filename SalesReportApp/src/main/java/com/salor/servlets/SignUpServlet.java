@@ -7,7 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.salor.bean.SalorAccountsRegister;
 import com.salor.factory.SalorServiceFactory;
 import com.salor.service.SalorServiceInterface;
 
@@ -30,7 +32,7 @@ public class SignUpServlet extends HttpServlet {
 		String orgName = request.getParameter("orgname");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		int noshops = Integer.parseInt(request.getParameter("noshops"));
+		//int noshops = Integer.parseInt(request.getParameter("noshops"));
 		String orgSize = request.getParameter("orgsize");
 		String ownerName = request.getParameter("ownername");
 		String pwd = request.getParameter("password");
@@ -40,6 +42,7 @@ public class SignUpServlet extends HttpServlet {
 		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
 		//Defining UserId variable
 		String userId = null;
+		//Generating the User ID which is unique for each Organization
 		int min = 100,max = 1000;
 		Random rand = new Random();
 		int id = rand.nextInt(max-min+1)+min;
@@ -47,8 +50,33 @@ public class SignUpServlet extends HttpServlet {
 		int flag = 0;
 		do {
 			String status = salorService.checkUserIdService(userId);
-			
+			if(status.equalsIgnoreCase("success")) {
+				flag = 1;
+				break;
+			}
+			else {
+				id = rand.nextInt(max-min+1)+min;
+				userId = "ORG"+id;
+				flag = 0;
+			}
 		}while(flag == 0);
+		
+		//Creating User account Object for Registration
+		SalorAccountsRegister accReg = new SalorAccountsRegister(userId, orgName, email, address, orgSize, ownerName, pwd);
+		
+		//Creating Session Object for Session Management
+		HttpSession session = request.getSession();
+		
+		//Calling the service method to register the account
+		String status = salorService.registerAccountService(accReg);
+		if(status.equalsIgnoreCase("success")) {
+			session.setAttribute("userId", userId);
+			response.sendRedirect("loginpage");
+		}
+		else {
+			session.setAttribute("errorMessage", "Some Problem Occured during Registration of the Account.");
+			response.sendRedirect("register");
+		}
 		
 	}
 

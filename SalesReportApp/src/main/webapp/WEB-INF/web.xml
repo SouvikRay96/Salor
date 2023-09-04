@@ -50,7 +50,16 @@
   	<url-pattern>/profile</url-pattern>
   </servlet-mapping>
   
+  <!-- SignupServlet URL Configuration -->
+  <servlet>
+  	<servlet-name>signupservlet</servlet-name>
+  	<servlet-class>com.salor.servlets.SignUpServlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  	<servlet-name>signupservlet</servlet-name>
+  	<url-pattern>/signupurl</url-pattern>
+  </servlet-mapping>
   
   
   

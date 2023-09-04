@@ -12,7 +12,13 @@
 	<%@include file="header.jsp" %>
 	<br><br><br>
 	
-	
+		<%
+			if(session.getAttribute("userId") != null){
+				out.println("<center><span style='color:green; font-weight:bolder'>"+"You are Successfully Registered with Salor.<br>"
+		+"Kindly Login with the UserId : "+session.getAttribute("userId")+" To avail all the facilities of Salor.</span></center><br>");
+			}
+		%>
+		
 		<form action="#" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">User Login</h2>
     		<label for="fname" class="label">Name of the Organization</label><br>

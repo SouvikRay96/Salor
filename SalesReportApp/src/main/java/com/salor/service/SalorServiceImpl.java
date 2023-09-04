@@ -10,15 +10,16 @@ public class SalorServiceImpl implements SalorServiceInterface {
 
 	@Override
 	public String registerAccountService(SalorAccountsRegister accReg) {
-		// TODO Auto-generated method stub
-		return null;
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.registerAccount(accReg);
+		return status;
 	}
 
 	@Override
 	public String checkUserIdService(String userId) {
 		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
-		salorDao.checkUserId(userId);
-		return null;
+		String status = salorDao.checkUserId(userId);
+		return status;
 	}
 
 	@Override
