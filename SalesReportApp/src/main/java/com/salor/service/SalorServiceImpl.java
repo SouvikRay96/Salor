@@ -24,8 +24,9 @@ public class SalorServiceImpl implements SalorServiceInterface {
 
 	@Override
 	public String loginAccountService(SalorAccountLogin accLog) {
-		// TODO Auto-generated method stub
-		return null;
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.loginAccount(accLog);
+		return status;
 	}
 
 	@Override

@@ -5,6 +5,14 @@ public class SalorAccountLogin {
 	private String emailId;
 	private String userId;
 	private String password;
+	
+	public SalorAccountLogin(String orgName, String emailId, String userId, String password) {
+		super();
+		this.setOrgName(orgName);
+		this.setEmailId(emailId);
+		this.setUserId(userId);
+		this.setPassword(password);
+	}
 	public String getOrgName() {
 		return orgName;
 	}

@@ -21,6 +21,7 @@
 		
 		<form action="loginurl" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">User Login</h2>
+			<span style="color:red">${message }</span>
     		<label for="fname" class="label">Name of the Organization</label><br>
 		    <span id="orgNameError" style="color:red"></span>
 		    <input type="text" name="orgname" placeholder="Enter Name of the Organization">
@@ -50,7 +51,7 @@
 		</form>
 		
 		<!-- Form validations Logics -->
-		<script type="text/javascript" src="loginformvalidations.js"></script>
+		<script type="text/javascript" src="pages/loginformvalidations.js"></script>
 		
 	<br><br>
 	    <%@include file="footer.jsp" %>

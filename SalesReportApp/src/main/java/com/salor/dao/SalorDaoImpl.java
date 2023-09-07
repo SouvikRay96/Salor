@@ -144,7 +144,62 @@ public class SalorDaoImpl implements SalorDaoInterface {
 
 	@Override
 	public String loginAccount(SalorAccountLogin accLog) {
-		// TODO Auto-generated method stub
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst1 = null;
+		
+		try {
+			//Establishing the Database Connection
+			con = ConnectionFactory.getConnectionObject();
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating the SQL Query
+			//select email_id,password from accounts where user_id="ORG869"
+			String queryString = "SELECT EMAIL_ID,PASSWORD FROM ACCOUNTS WHERE USER_ID = '"+accLog.getUserId()+"'";
+			
+			//Creating ResultSet Object
+			if(st != null) {
+				//Executing the Query
+				rst1 = st.executeQuery(queryString);
+				
+				if(rst1.next()) {
+					if(rst1.getString(1).equals(accLog.getEmailId()) && rst1.getString(2).equals(accLog.getPassword())) {
+						return "success";
+					}
+					if(!(rst1.getString(1).equals(accLog.getEmailId())))
+						return "emailMismatch";
+					if(!(rst1.getString(2).equals(accLog.getPassword())))
+						return "passwordMismatch";
+				}
+				else {
+					return "failure";
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(rst1 != null) {
+					rst1.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 		return null;
 	}
 
