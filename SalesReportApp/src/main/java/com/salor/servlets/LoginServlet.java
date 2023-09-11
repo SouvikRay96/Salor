@@ -48,25 +48,30 @@ public class LoginServlet extends HttpServlet {
 		if(status == null) {
 			message = "OOP's !!! Something Went Wrong";
 		}
-		else if(status.equalsIgnoreCase("success")){
+		if(status.equalsIgnoreCase("success")){
 			message = "Login Successfull";
 			HttpSession session = request.getSession();
 			session.setAttribute("message", message);
 			response.sendRedirect("homepage");
 		}
-		else if(status.equalsIgnoreCase("emailMismatch")) {
-			message = "Please Provide a Valid Email-ID";
+		else {
+			if(status.equalsIgnoreCase("orgNameMismatch")) {
+				message = "Please Provide a Correct Organization Name";
+			}
+			else if(status.equalsIgnoreCase("emailMismatch")) {
+				message = "Please Provide a Valid Email-ID";
+			}
+			else if(status.equalsIgnoreCase("passwordMismatch")) {
+				message = "Please Provide a Correct Password";
+			}
+			else if(status.equalsIgnoreCase("failure")) {
+				message = "User-ID didn't matched";
+			}
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("loginpage");
+			rd.forward(request, response);
+			
 		}
-		else if(status.equalsIgnoreCase("passwordMismatch")) {
-			message = "Please Provide a Correct Password";
-		}
-		else if(status.equalsIgnoreCase("failure")) {
-			message = "User-ID didn't matched";
-		}
-		
-		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("loginpage");
-		rd.forward(request, response);
 		
 		
 		

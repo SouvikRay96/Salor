@@ -161,7 +161,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 			//Creating the SQL Query
 			//select email_id,password from accounts where user_id="ORG869"
-			String queryString = "SELECT EMAIL_ID,PASSWORD FROM ACCOUNTS WHERE USER_ID = '"+accLog.getUserId()+"'";
+			String queryString = "SELECT EMAIL_ID,PASSWORD,ORG_NAME FROM ACCOUNTS WHERE USER_ID = '"+accLog.getUserId()+"'";
 			
 			//Creating ResultSet Object
 			if(st != null) {
@@ -172,6 +172,8 @@ public class SalorDaoImpl implements SalorDaoInterface {
 					if(rst1.getString(1).equals(accLog.getEmailId()) && rst1.getString(2).equals(accLog.getPassword())) {
 						return "success";
 					}
+					if(!(rst1.getString(3).equals(accLog.getOrgName())))
+						return "orgNameMismatch";
 					if(!(rst1.getString(1).equals(accLog.getEmailId())))
 						return "emailMismatch";
 					if(!(rst1.getString(2).equals(accLog.getPassword())))
