@@ -19,6 +19,16 @@
 	<div class="bg bg2"></div>
 	<div class="bg bg3"></div> 
 	
+	<!-- Scriplet Tags if the Login is successful or not -->
+	<%
+		String log = null;
+		if(session.getAttribute("pwd") != null && session.getAttribute("userid") != null){
+			log = "<a href='logout'><i class='bi bi-person-fill'></i> <b>Log-Out</b></a>";
+		}
+		else{
+			log = "<a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>";
+		}
+	%>
 	    <!-- Navigation Bar -->
     <nav >
         <ul id="logo">
@@ -30,7 +40,8 @@
         <ul id="navigations">
             <li>
             <!-- Change -->
-                <a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>
+                <!-- <a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a> -->
+                <%=log %>
             </li>
             <li>
                 <div class="dropdown">

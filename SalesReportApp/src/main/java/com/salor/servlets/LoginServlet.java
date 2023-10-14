@@ -52,6 +52,8 @@ public class LoginServlet extends HttpServlet {
 			message = "Login Successfull";
 			HttpSession session = request.getSession();
 			session.setAttribute("message", message);
+			session.setAttribute("pwd", pwd);
+			session.setAttribute("userid", userid);
 			response.sendRedirect("homepage");
 		}
 		else {

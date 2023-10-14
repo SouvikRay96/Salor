@@ -50,6 +50,17 @@
   	<url-pattern>/profile</url-pattern>
   </servlet-mapping>
   
+  <!-- Exit Page URL Configuration -->
+  <servlet>
+  	<servlet-name>Exit</servlet-name>
+  	<jsp-file>/pages/exit.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Exit</servlet-name>
+  	<url-pattern>/exitpage</url-pattern>
+  </servlet-mapping>
+  
   <!-- SignupServlet URL Configuration -->
   <servlet>
   	<servlet-name>signupservlet</servlet-name>
@@ -71,6 +82,7 @@
   	<servlet-name>loginServlet</servlet-name>
   	<url-pattern>/loginurl</url-pattern>
   </servlet-mapping>
+  
   
   
   
