@@ -1,5 +1,8 @@
 package com.salor.service;
 
+//import java.util.ArrayList;
+//import java.util.List;
+
 import com.salor.bean.SalorAccountLogin;
 import com.salor.bean.SalorAccountsRegister;
 import com.salor.bean.SalorProductBean;
@@ -12,4 +15,5 @@ public interface SalorServiceInterface {
 	public String updateProductService(SalorProductBean pdt);
 	public String deleteProductService(SalorProductBean pdt);
 	public void visualizeReportService(SalorAccountLogin acclog);
+	public String[] profileInfoService(String userId);
 }

@@ -1,5 +1,7 @@
 package com.salor.service;
 
+//import java.util.List;
+
 import com.salor.bean.SalorAccountLogin;
 import com.salor.bean.SalorAccountsRegister;
 import com.salor.bean.SalorProductBean;
@@ -20,6 +22,13 @@ public class SalorServiceImpl implements SalorServiceInterface {
 		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
 		String status = salorDao.checkUserId(userId);
 		return status;
+	}
+
+	@Override
+	public String[] profileInfoService(String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String[] profileInfo = salorDao.profileInfo(userId);
+		return profileInfo;
 	}
 
 	@Override

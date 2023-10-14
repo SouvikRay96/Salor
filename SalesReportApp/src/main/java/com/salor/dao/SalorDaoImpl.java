@@ -84,6 +84,74 @@ public class SalorDaoImpl implements SalorDaoInterface {
 	}
 
 	@Override
+	public String[] profileInfo(String userid) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Creating Profile Info String Array
+		String[] profileInfo = new String[7];
+		try {
+			
+			//Establishing Connection with the Database
+			con = ConnectionFactory.getConnectionObject();
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating the Resultset and Execution of the SQL Commands
+			if(st != null) {
+				rst = st.executeQuery("SELECT * FROM ACCOUNTS WHERE USER_ID = '"+userid+"'");
+				
+				//Fetching the Profile Information from the ResultSet Object
+				if(rst.next()) {
+					for(int i = 1; i<=7; i++) {
+						profileInfo[i-1] = rst.getString(i);
+					}
+				}
+			}
+			
+		} catch (SQLException se) {
+			if(se.getErrorCode() == 1)
+				System.out.println("Duplicate cannot be inserted to Primary Key Column.");
+			if(se.getErrorCode() == 1400)
+				System.out.println("Null cannot be Inserted to primary key column.");
+			if(se.getErrorCode() >= 900 && se.getErrorCode() <= 999)
+				System.out.println("Inavlid column Names or table name or SQL keywords");
+			if(se.getErrorCode() == 12899)
+				System.out.println("Do not insert more than column size data columns");
+			System.out.println(se.toString());
+			se.printStackTrace();
+			
+		}
+		
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return profileInfo;
+	}
+
+	@Override
 	public String checkUserId(String userId) {
 		
 		//Resource Declarations
