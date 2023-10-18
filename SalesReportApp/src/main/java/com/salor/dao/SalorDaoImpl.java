@@ -418,7 +418,6 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		//Resource Declarations
 		Connection con = null;
 		Statement st = null;
-		ResultSet rst = null;
 		
 		//Declaring the status variable for successful insertion or not
 		String status = null;
@@ -441,16 +440,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 				st = con.createStatement();
 			}
 			
-			//Now we have to check that the following product table already exists in the database or not
-			/*if(st != null) {
-				rst = st.executeQuery("SELECT PRODUCT_ID FROM PRODUCTLIST");
-				while(rst.next()) {
-					if(productId.equalsIgnoreCase(rst.getString(1))) {
-						flag = 1; //Product is already present in the table ProductList
-						return null;
-					}
-				}
-			}*/
+			
 			
 			//If the product is not present in the ProductList then
 			//Insert the product into the ProductList
@@ -473,12 +463,19 @@ public class SalorDaoImpl implements SalorDaoInterface {
 				if(st != null) {
 					boolean create = st.execute(createTable);
 					int insert = st.executeUpdate(insertProduct);
+					if(insert == 1) {
+						status = "success";
+					}
+					else {
+						status = "failure";
+					}
 				}
 			}
 		} catch (Exception e) {
+			status = "error";
 			e.printStackTrace();
 		}
-		return null;
+		return status;
 	}
 
 	@Override

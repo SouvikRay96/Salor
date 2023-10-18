@@ -45,17 +45,17 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Insert Product Details</h1>
+                        <h1>Insert Product Name</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Inserting Product Details of the Organization</h3>
+                            <h3 class="text-white fs-5">Inserting Product Name and Generate Product Id</h3>
                             <br>
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
+                                <%=insertProductCard %>
                             </div>
                         </div>
                     </div>
@@ -66,16 +66,16 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Update Report's Record(s)</h1>
+                        <h1>Insert/Update Product Sales</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Updating Sales Records in the Sales Report of the Company </h3>
+                            <h3 class="text-white fs-5">Insert/Update Sales Records of the Product </h3>
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
+                                <%=updateProductSalesCard %>
                             </div>
                         </div>
                     </div>
@@ -86,17 +86,17 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Delete Report's Record(s)</h1>
+                        <h1>Delete Product's Sales</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Deletion of Sales Records from the Sales Report of the Company </h3>
+                            <h3 class="text-white fs-5">Deletion of Sales of the Product</h3>
                             <br>
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
+                                <%=deleteSalesCard %>
                             </div>
                         </div>
                     </div>

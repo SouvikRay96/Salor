@@ -72,6 +72,28 @@
   	<url-pattern>/insertpdturl</url-pattern>
   </servlet-mapping>
   
+  <!-- Insert/Update Product's Sales page URL configuration -->
+  <servlet>
+  	<servlet-name>updateInsertSales</servlet-name>
+  	<jsp-file>/pages/updateSales.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>updateInsertSales</servlet-name>
+  	<url-pattern>/insertUpdateSales</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Delete Product Sales Page URL Configuration -->
+  <servlet>
+  	<servlet-name>deleteSales</servlet-name>
+  	<jsp-file>/pages/deleteProductSales.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>deleteSales</servlet-name>
+  	<url-pattern>/delPdtSalesurl</url-pattern>
+  </servlet-mapping>
+  
   <!-- SignupServlet URL Configuration -->
   <servlet>
   	<servlet-name>signupservlet</servlet-name>

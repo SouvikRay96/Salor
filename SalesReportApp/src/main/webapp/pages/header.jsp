@@ -22,11 +22,28 @@
 	<!-- Scriplet Tags if the Login is successful or not -->
 	<%
 		String log = null;
+		String insertProductCard = null;
+		String insertProductNav = null;
+		String updateProductSalesNav = null,updateProductSalesCard = null;
+		String deleteSalesNav = null,deleteSalesCard = null;
 		if(session.getAttribute("pwd") != null && session.getAttribute("userid") != null){
 			log = "<a href='logout'><i class='bi bi-person-fill'></i> <b>Log-Out</b></a>";
+			insertProductCard = "<a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			insertProductNav = "<a href='insertpdturl'>Insert Product Name</a>";
+			updateProductSalesNav = "<a href='insertUpdateSales'>Insert/Update Product's Sales</a>";
+			updateProductSalesCard = "<a href='insertUpdateSales'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			deleteSalesNav = "<a href='delPdtSalesurl'>Delete Product's Sales</a>";
+			deleteSalesCard = "<a href='delPdtSalesurl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			
 		}
 		else{
 			log = "<a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>";
+			insertProductCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			insertProductNav = "<a href='loginpage'>Insert Product Name</a>";
+			updateProductSalesNav = "<a href='loginpage'>Insert/Update Product's Sales</a>";
+			updateProductSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			deleteSalesNav = "<a href='loginpage'>Delete Product's Sales</a>";
+			deleteSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 		}
 	%>
 	    <!-- Navigation Bar -->
@@ -48,9 +65,9 @@
                     <button class="dropbtn"><b>Facilities</b> <i id="drop_icon" class="bi bi-caret-down-fill"></i></button>
                     <div class="dropdown-content">
                     <!-- Change -->
-                      <a href='#'>Insert Report Content</a>
-                        <a href='#'>Update Report's Record(s)</a>
-                        <a href='#'>Delete Report's Record(s)</a>
+                      	<%=insertProductNav %>
+                        <%=updateProductSalesNav %>
+                        <%=deleteSalesNav %>
                         <a href='#'>Visualize Sales Report</a>
                         <a href='#'>Add Shops of the Company</a>
                     </div>
