@@ -45,17 +45,17 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Insert Report Content</h1>
+                        <h1>Insert Product Details</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Inserting of the sales records to the Report</h3>
+                            <h3 class="text-white fs-5">Inserting Product Details of the Organization</h3>
                             <br>
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
+                                <a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
                             </div>
                         </div>
                     </div>

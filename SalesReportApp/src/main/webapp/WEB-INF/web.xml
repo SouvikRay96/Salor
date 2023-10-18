@@ -61,6 +61,17 @@
   	<url-pattern>/exitpage</url-pattern>
   </servlet-mapping>
   
+  <!-- Insert Product details page URL configuration -->
+  <servlet>
+  	<servlet-name>insertProduct</servlet-name>
+  	<jsp-file>/pages/insertProduct.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>insertProduct</servlet-name>
+  	<url-pattern>/insertpdturl</url-pattern>
+  </servlet-mapping>
+  
   <!-- SignupServlet URL Configuration -->
   <servlet>
   	<servlet-name>signupservlet</servlet-name>

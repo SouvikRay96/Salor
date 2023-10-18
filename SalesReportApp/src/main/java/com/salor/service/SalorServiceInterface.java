@@ -10,8 +10,9 @@ import com.salor.bean.SalorProductBean;
 public interface SalorServiceInterface {
 	public String registerAccountService(SalorAccountsRegister accReg);
 	public String checkUserIdService(String userId);
+	public String checkProductIdService(String productId,String userId);
 	public String loginAccountService(SalorAccountLogin accLog);
-	public String insertProductService(SalorProductBean pdt);
+	public String insertProductService(SalorProductBean pdt,String userId);
 	public String updateProductService(SalorProductBean pdt);
 	public String deleteProductService(SalorProductBean pdt);
 	public void visualizeReportService(SalorAccountLogin acclog);

@@ -1,7 +1,7 @@
 package com.salor.bean;
 
 public class SalorProductBean {
-	private int productId;
+	private String productId;
 	private String productName;
 	private double costPerProduct;
 	private double spPerProduct;
@@ -11,10 +11,25 @@ public class SalorProductBean {
 	private double totalSales;
 	private double netProfit;
 	private double netLoss;
-	public int getProductId() {
+	private String dateBought;
+	private String dateSold;
+	
+	public String getDateBought() {
+		return dateBought;
+	}
+	public void setDateBought(String dateBought) {
+		this.dateBought = dateBought;
+	}
+	public String getDateSold() {
+		return dateSold;
+	}
+	public void setDateSold(String dateSold) {
+		this.dateSold = dateSold;
+	}
+	public String getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 	public String getProductName() {

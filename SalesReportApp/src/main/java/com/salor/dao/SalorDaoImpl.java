@@ -1,6 +1,7 @@
 package com.salor.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,137 @@ import com.salor.bean.SalorProductBean;
 import com.salor.factory.ConnectionFactory;
 
 public class SalorDaoImpl implements SalorDaoInterface {
+
+	private static Connection connectOrgDatabase(String userId) {
+		Connection con = null;
+		
+		try {
+			String database = "jdbc:mysql://localhost:3306/"+userId;
+			con = DriverManager.getConnection(database, "root", "tojosoumili12");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return con;
+	}
+	
+	private static String orgDatabaseCreation(String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		try {
+			//Establishing Connection with the salor database
+			con = ConnectionFactory.getConnectionObject();
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Command to create the database for the Organization
+			String query = "CREATE DATABASE "+userId;
+			
+			boolean flag = false;
+			//Executing the command for creation of the database
+			if(st != null) {
+				flag = st.execute(query);
+				SalorDaoImpl.productListTableCreation(userId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	private static String productListTableCreation(String userId) {
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		try {
+			//Establishing Connection with the Organization Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Command for creating the ProductList Table for the registered Organization 
+			String create = "CREATE TABLE PRODUCTLIST(PRODUCT_ID VARCHAR(15) PRIMARY KEY,PRODUCT_NAME VARCHAR(26))";
+			
+			//Declaring a variable flag for keeping tab of the table Creation
+			boolean flag = false;
+			//Executing the query
+			if(st != null) {
+				flag = st.execute(create);
+			}
+			if(flag)
+				return "success";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return "failure";
+	}
+	@Override
+	public String checkProductId(String productId,String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Declaring a status variable for checking that the product Id generated is valid
+		String status = null;
+		//Declaring a flag variable to keep a tab that the database of the Organization is found
+		int flag = 0;
+		
+		boolean c = true;
+		
+		try {
+			
+			//Establishing Connection with the Organization Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Checking the ProductId is valid or not
+			if(st != null) {
+				String query = "SELECT PRODUCT_ID FROM PRODUCTLIST";
+				rst = st.executeQuery(query);
+				while(rst.next()) {
+					if(productId.equalsIgnoreCase(rst.getString(1))) {
+						flag = 1;
+						break;
+					}
+				}
+				
+			}
+			if(flag == 0) {
+				status = "success";
+			}
+			else {
+				status = "failure";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 
 	@Override
 	public String registerAccount(SalorAccountsRegister accReg) {
@@ -51,8 +183,15 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			}
 			
 			//Generating Status
-			if(count == 1)
+			if(count == 1) {
 				status = "success";
+				//After Successful Registration create a database for the Organization
+				//and create a table named ProductList in that Organization Database
+				String status1 = SalorDaoImpl.orgDatabaseCreation(accReg.getUserId());
+				System.out.println("Organization databse and ProductList Table Creation of that database is successful");
+					
+				
+			}
 			else
 				status = "failure";
 			
@@ -229,7 +368,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 			//Creating the SQL Query
 			//select email_id,password from accounts where user_id="ORG869"
-			String queryString = "SELECT EMAIL_ID,PASSWORD,ORG_NAME FROM ACCOUNTS WHERE USER_ID = '"+accLog.getUserId()+"'";
+			String queryString = "SELECT EMAIL_ID,PASSWORD,ORGANIZATION_NAME FROM ACCOUNTS WHERE USER_ID = '"+accLog.getUserId()+"'";
 			
 			//Creating ResultSet Object
 			if(st != null) {
@@ -274,8 +413,71 @@ public class SalorDaoImpl implements SalorDaoInterface {
 	}
 
 	@Override
-	public String insertProduct(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
+	public String insertProduct(SalorProductBean pdt,String userId) {
+
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Declaring the status variable for successful insertion or not
+		String status = null;
+		
+		//Declaring a flag variable to check whether the product table exist or not
+		int flag = 0;
+		
+		//Retrieving the values of the SalorProductBean Object
+		String productId = pdt.getProductId();
+		String productName = pdt.getProductName();
+		
+		
+		try {
+			
+			//Establishing the Connection with the database of the Organization
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating the Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Now we have to check that the following product table already exists in the database or not
+			/*if(st != null) {
+				rst = st.executeQuery("SELECT PRODUCT_ID FROM PRODUCTLIST");
+				while(rst.next()) {
+					if(productId.equalsIgnoreCase(rst.getString(1))) {
+						flag = 1; //Product is already present in the table ProductList
+						return null;
+					}
+				}
+			}*/
+			
+			//If the product is not present in the ProductList then
+			//Insert the product into the ProductList
+			//And create a table of the product with the required fields which is named as of ProductId. 
+			if(flag == 0) {
+				//Command for creation of the Product Table according to the generated Id
+				String createTable = " CREATE TABLE "+productId
+						+"(COST_PRICE_PER_PRODUCT DOUBLE(7,3),"
+						+"SELLING_PRICE_PER_PRODUCT DOUBLE(7,3),"
+						+"QUANTITY_IN_STOCK INT,"
+						+"QUANTITY_SOLD INT,"
+						+"TOTAL_COST_OF_PRODUCTION DOUBLE(9,3),"
+						+"TOTAL_SALES DOUBLE(9,3),"
+						+"NET_PROFIT DOUBLE(6,3),"
+						+"NET_LOSS DOUBLE(6,3),"
+						+"DATE_BOUGHT DATE,DATE_SOLD DATE)";
+				//Command for inserting the ProductId and the ProductName into the ProductList Table
+				String insertProduct = "INSERT INTO PRODUCTLIST VALUES('"+productId+"','"+productName+"')";
+				
+				if(st != null) {
+					boolean create = st.execute(createTable);
+					int insert = st.executeUpdate(insertProduct);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

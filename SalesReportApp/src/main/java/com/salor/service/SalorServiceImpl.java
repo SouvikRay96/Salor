@@ -10,6 +10,8 @@ import com.salor.factory.SalorDaoFactory;
 
 public class SalorServiceImpl implements SalorServiceInterface {
 
+	
+
 	@Override
 	public String registerAccountService(SalorAccountsRegister accReg) {
 		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
@@ -39,9 +41,17 @@ public class SalorServiceImpl implements SalorServiceInterface {
 	}
 
 	@Override
-	public String insertProductService(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
-		return null;
+	public String insertProductService(SalorProductBean pdt,String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.insertProduct(pdt,userId);
+		return status;
+	}
+
+	@Override
+	public String checkProductIdService(String productId, String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.checkProductId(productId, userId);
+		return status;
 	}
 
 	@Override
