@@ -13,6 +13,63 @@ import com.salor.factory.ConnectionFactory;
 
 public class SalorDaoImpl implements SalorDaoInterface {
 
+	@Override
+	public String[] productList(String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		String[] productList = new String[1000];
+		int i = 0;
+		
+		try {
+			
+			//Establishing Connection with the Organization database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating Query to get all the records in the Product Table
+			String query = "SELECT * FROM PRODUCTLIST";
+			
+			//Execution of the Query to fetch the records from the ProductList Table
+			if(st != null) {
+				rst = st.executeQuery(query);
+			}
+			
+			//Fetching the Records from the ResultSet Object
+			while(rst.next()) {
+				productList[i] = rst.getString(1)+"--"+rst.getString(2);
+				i++;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null)
+					st.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return productList;
+	}
+
 	private static Connection connectOrgDatabase(String userId) {
 		Connection con = null;
 		
@@ -53,6 +110,20 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null)
+					st.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
 		}
 		
 		return null;
@@ -88,7 +159,21 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null)
+					st.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
 		
 		
 		return "failure";
@@ -139,6 +224,21 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null)
+					st.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
 		}
 		
 		return status;

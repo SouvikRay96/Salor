@@ -17,4 +17,5 @@ public interface SalorServiceInterface {
 	public String deleteProductService(SalorProductBean pdt);
 	public void visualizeReportService(SalorAccountLogin acclog);
 	public String[] profileInfoService(String userId);
+	public String[] productListService(String userId);
 }

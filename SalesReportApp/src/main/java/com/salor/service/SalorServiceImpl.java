@@ -13,6 +13,13 @@ public class SalorServiceImpl implements SalorServiceInterface {
 	
 
 	@Override
+	public String[] productListService(String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String[] productList = salorDao.productList(userId);
+		return productList;
+	}
+
+	@Override
 	public String registerAccountService(SalorAccountsRegister accReg) {
 		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
 		String status = salorDao.registerAccount(accReg);

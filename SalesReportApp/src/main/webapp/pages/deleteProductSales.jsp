@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,16 +21,21 @@
 		<!-- <center><span style=color:green; font-weight:bolder>
 			${message }
 		</span></center> -->
-		<!-- <form action="insertRecordurl" class="loginform" method = "post" onsubmit = "return validate(this)">
-			<h2 class="title" style="color:black;text-align: center;">Insert Product Name</h2>
+		<form action="#" class="loginform" method = "post" onsubmit = "return validate(this)">
+			<h2 class="title" style="color:black;text-align: center;">Delete Product Sales</h2>
 			<span style="color:red">${errorMessage }</span>
 			
 				<label for="fname" class="label">Name of the Product</label><br>
 				<span id="pdtnameError" style="color:red"></span>				
-				<input type="text" name="pdtname" placeholder="Enter Name of the Product">
+				<select name="productName">
+					<option>--Select the Product--</option>
+					<c:forEach items="${productList }" var="pdt">
+						<option value="">${pdt }</option>
+					</c:forEach>
+				</select>
 			
 	    	<input type="submit" value="Submit Details">
-		</form> -->
+		</form> 
 	
 	<br><br>
 	<!-- Footer Section -->
