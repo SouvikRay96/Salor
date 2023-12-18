@@ -32,8 +32,8 @@
 			insertProductNav = "<a href='insertpdturl'>Insert Product Name</a>";
 			updateProductSalesNav = "<a href='insertUpdateSales'>Insert/Update Product's Sales</a>";
 			updateProductSalesCard = "<a href='insertUpdateSales'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
-			deleteSalesNav = "<a href='generatepdtListurl'>Delete Product's Sales</a>";
-			deleteSalesCard = "<a href='generatepdtListurl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			deleteSalesNav = "<a href='delPdtSalesurl'>Delete Product's Sales</a>";
+			deleteSalesCard = "<a href='delPdtSalesurl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			
 		}
 		else{
