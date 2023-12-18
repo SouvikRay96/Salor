@@ -596,4 +596,10 @@ public class SalorDaoImpl implements SalorDaoInterface {
 
 	}
 
+	@Override
+	public String deleteAllProductDetails(String pdtId, String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

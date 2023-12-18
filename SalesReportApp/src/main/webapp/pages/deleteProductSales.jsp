@@ -21,7 +21,7 @@
 		<!-- <center><span style=color:green; font-weight:bolder>
 			${message }
 		</span></center> -->
-		<form action="#" class="loginform" method = "post" onsubmit = "return validate(this)">
+		<form action="deleteproduct" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">Delete Product Sales</h2>
 			<span style="color:red">${errorMessage }</span>
 			
@@ -30,7 +30,7 @@
 				<select name="productName">
 					<option>--Select the Product--</option>
 					<c:forEach items="${productList }" var="pdt">
-						<option value="">${pdt }</option>
+						<option value="${pdt }">${pdt }</option>
 					</c:forEach>
 				</select>
 			

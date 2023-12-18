@@ -79,4 +79,10 @@ public class SalorServiceImpl implements SalorServiceInterface {
 
 	}
 
+	@Override
+	public String deleteAllProductDetailsService(String pdtId, String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

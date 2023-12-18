@@ -12,6 +12,7 @@ public interface SalorDaoInterface {
 	public String insertProduct(SalorProductBean pdt,String userId);
 	public String updateProduct(SalorProductBean pdt);
 	public String deleteProduct(SalorProductBean pdt);
+	public String deleteAllProductDetails(String pdtId,String userId);
 	public void visualizeReport(SalorAccountLogin acclog);
 	public String[] profileInfo(String userid);
 	public String[] productList(String userId);
