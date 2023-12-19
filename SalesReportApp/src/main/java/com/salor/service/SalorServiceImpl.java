@@ -81,8 +81,9 @@ public class SalorServiceImpl implements SalorServiceInterface {
 
 	@Override
 	public String deleteAllProductDetailsService(String pdtId, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.deleteAllProductDetails(pdtId, userId);
+		return status;
 	}
 
 }

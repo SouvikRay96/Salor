@@ -18,7 +18,7 @@
 	
 	<!-- Body Section -->
 		<center><span style=color:green; font-weight:bolder>
-			${message }
+			${insertmessage }
 		</span></center>
 		<form action="insertRecordurl" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">Insert Product Name</h2>

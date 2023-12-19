@@ -68,18 +68,18 @@ public class InsertRecordServlet extends HttpServlet {
 		
 		//Sending the salor Product Object to the Service class
 		String status = salorService.insertProductService(salorPdt,userid);
-		String message = null;
+		String insertmessage = null;
 		if(status.equalsIgnoreCase("success")) {
-			message = "Product Name Inserted Successfully";
+			insertmessage = "Product Name Inserted Successfully";
 		}
 		else if(status.equalsIgnoreCase("failure")) {
-			message = "Product Name Cannot be Inserted";
+			insertmessage = "Product Name Cannot be Inserted";
 		}
 		else {
-			message = "Some Error Occured while inserting the Product into the database";
+			insertmessage = "Some Error Occured while inserting the Product into the database";
 		}
 		
-		session.setAttribute("message", message);
+		session.setAttribute("insertmessage", insertmessage);
 		response.sendRedirect("insertpdturl");
 	
 	}

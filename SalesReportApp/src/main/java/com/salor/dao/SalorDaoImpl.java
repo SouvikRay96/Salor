@@ -598,8 +598,59 @@ public class SalorDaoImpl implements SalorDaoInterface {
 
 	@Override
 	public String deleteAllProductDetails(String pdtId, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		//ResultSet rst = null;
+		
+		//Declaring a status variable for the successfull deletion of the product or not
+		String status = null;
+		
+		//Initializing a count variable with zero to know how many rows are affected after deletion
+		int count1 = 0,count2 = 0;
+		
+		try {
+			
+			//Establishing Connection with the Organization's Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Getting the Query Ready for the deletion of the product from the ProductList Table
+			//And also dropping the product's Table
+			String deletepdtQuery = "DELETE FROM PRODUCTLIST WHERE PRODUCT_ID='"+pdtId+"'";
+			String deleteTableQuery = "DROP TABLE "+pdtId;
+			
+			if(st != null) {
+				count1 = st.executeUpdate(deletepdtQuery);
+				count2 = st.executeUpdate(deleteTableQuery);
+				if(count1 == 1 && count2 == 0) {
+					status = "success";
+				}
+				else {
+					status = "failure";
+				}
+			}
+			
+			
+		} catch (Exception e) {
+			status = "error";
+			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return status;
 	}
 
 }

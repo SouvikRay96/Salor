@@ -66,12 +66,12 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Insert/Update Product Sales</h1>
+                        <h1>Insert Product Sales</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Insert/Update Sales Records of the Product </h3>
+                            <h3 class="text-white fs-5">Insert Sales Records of the Product </h3>
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
@@ -112,7 +112,7 @@
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Visualizing the Sales Report and Profit and Loss Statements 
+                            <h3 class="text-white fs-5">Visualizing the Sales Report of the Product 
                             </h3>
                             
                             <br>
@@ -130,12 +130,12 @@
                 <div class="body">
                     <div class="imgContainer">
                         <hr>
-                        <h1>Add Shops Under the Company</h1>
+                        <h1>Update Product's Sales</h1>
                         <hr>
                     </div>
                     <div class="content d-flex flex-column align-items-center justify-content-center">
                         <div>
-                            <h3 class="text-white fs-5">Addition of shops under the company (if any) 
+                            <h3 class="text-white fs-5"> Update the Sales of Product
                             </h3>
                             
                             <br>

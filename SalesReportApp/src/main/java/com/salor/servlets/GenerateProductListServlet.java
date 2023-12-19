@@ -39,6 +39,8 @@ public class GenerateProductListServlet extends HttpServlet {
 		//Assigning the productList Array with the session object
 		session.setAttribute("productList", productList);
 		
+		
+		
 		//Redirecting to the deleteProductSales.jsp page
 		response.sendRedirect("delPdtSalesurl");
 		

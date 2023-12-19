@@ -18,9 +18,9 @@
 	<div class="bg bg3"></div>
 	
 	<!-- Body Section -->
-		<!-- <center><span style=color:green; font-weight:bolder>
-			${message }
-		</span></center> -->
+		<center><span style=color:green; font-weight:bolder>
+			${deletemessage }
+		</span></center>
 		<form action="deleteproduct" class="loginform" method = "post" onsubmit = "return validate(this)">
 			<h2 class="title" style="color:black;text-align: center;">Delete Product Sales</h2>
 			<span style="color:red">${errorMessage }</span>

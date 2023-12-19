@@ -1,12 +1,17 @@
 package com.salor.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.salor.factory.SalorServiceFactory;
+import com.salor.service.SalorServiceInterface;
 
 /**
  * Servlet implementation class DeleteProductServlet
@@ -33,7 +38,26 @@ public class DeleteProductServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userid");
 		
+		//Creating Service Layer Object
+		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
+		String status = salorService.deleteAllProductDetailsService(productId, userId);
 		
+		//Creating a message variable to display the appropriate message on deletion
+		String deletemessage = null;
+		
+		//Checking successfull completion of the deletion of product
+		if(status.equalsIgnoreCase("success")) {
+			deletemessage = "Deletion of Product "+productName+" having the corresponding ProductID : "+productId+" is Successful";
+		}
+		else if(status.equalsIgnoreCase("failure")) {
+			deletemessage = "Deletion of the Product "+productName+" is not Possible";
+		}
+		else {
+			deletemessage = "Some Error Occured while Deleting the required Product";
+		}
+		session.setAttribute("deletemessage", deletemessage);
+		RequestDispatcher rd = request.getRequestDispatcher("generatepdtListurl");
+		rd.forward(request, response);
 		
 		
 		
