@@ -56,7 +56,7 @@ public class DeleteProductServlet extends HttpServlet {
 			deletemessage = "Some Error Occured while Deleting the required Product";
 		}
 		session.setAttribute("deletemessage", deletemessage);
-		RequestDispatcher rd = request.getRequestDispatcher("generatepdtListurl");
+		RequestDispatcher rd = request.getRequestDispatcher("generatepdtListurl?opcode=del");
 		rd.forward(request, response);
 		
 		

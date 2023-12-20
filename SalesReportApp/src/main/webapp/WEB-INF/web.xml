@@ -72,15 +72,15 @@
   	<url-pattern>/insertpdturl</url-pattern>
   </servlet-mapping>
   
-  <!-- Insert/Update Product's Sales page URL configuration -->
+  <!-- Insert Product's Sales page URL configuration -->
   <servlet>
-  	<servlet-name>updateInsertSales</servlet-name>
-  	<jsp-file>/pages/updateSales.jsp</jsp-file>
+  	<servlet-name>insertProductSales</servlet-name>
+  	<jsp-file>/pages/insertRecord.jsp</jsp-file>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>updateInsertSales</servlet-name>
-  	<url-pattern>/insertUpdateSales</url-pattern>
+  	<servlet-name>insertProductSales</servlet-name>
+  	<url-pattern>/insertProductSales</url-pattern>
   </servlet-mapping>
   
   <!-- Delete Product Sales Page URL Configuration -->

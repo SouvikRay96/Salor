@@ -26,6 +26,9 @@ public class GenerateProductListServlet extends HttpServlet {
 		//Setting the Response Content Type
 		response.setContentType("text/html");
 		
+		//Retrieving the Operational Code from the link
+		String opcode = request.getParameter("opcode");
+		
 		//Creating Session Object and get the userId from the session Object
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userid");
@@ -36,13 +39,21 @@ public class GenerateProductListServlet extends HttpServlet {
 		//Calling the method of the Service Class for generating the Product List of the Organization
 		String[] productList = salorService.productListService(userId);
 		
+		//Setting the url in the url variable
+		String url = null;
+		
 		//Assigning the productList Array with the session object
 		session.setAttribute("productList", productList);
 		
-		
-		
-		//Redirecting to the deleteProductSales.jsp page
-		response.sendRedirect("delPdtSalesurl");
+		if(opcode.equalsIgnoreCase("ins")) {
+			//Redirecting to the insert Product's Sales Record page
+			url = "insertProductSales";
+		}
+		else if(opcode.equalsIgnoreCase("del")) {
+			//Redirecting to the deleteProductSales.jsp page
+			url = "delPdtSalesurl";		
+		}
+		response.sendRedirect(url);
 		
 	}
 

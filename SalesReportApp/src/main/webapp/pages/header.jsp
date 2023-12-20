@@ -24,24 +24,24 @@
 		String log = null;
 		String insertProductCard = null;
 		String insertProductNav = null;
-		String updateProductSalesNav = null,updateProductSalesCard = null;
+		String insertProductSalesNav = null,insertProductSalesCard = null;
 		String deleteSalesNav = null,deleteSalesCard = null;
 		if(session.getAttribute("pwd") != null && session.getAttribute("userid") != null){
 			log = "<a href='logout'><i class='bi bi-person-fill'></i> <b>Log-Out</b></a>";
 			insertProductCard = "<a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			insertProductNav = "<a href='insertpdturl'>Insert Product Name</a>";
-			updateProductSalesNav = "<a href='insertUpdateSales'>Insert/Update Product's Sales</a>";
-			updateProductSalesCard = "<a href='insertUpdateSales'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
-			deleteSalesNav = "<a href='generatepdtListurl'>Delete Product's Sales</a>";
-			deleteSalesCard = "<a href='generatepdtListurl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			insertProductSalesNav = "<a href='generatepdtListurl?opcode=ins'>Insert Product's Sales</a>";
+			insertProductSalesCard = "<a href='generatepdtListurl?opcode=ins'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			deleteSalesNav = "<a href='generatepdtListurl?opcode=del'>Delete Product's Sales</a>";
+			deleteSalesCard = "<a href='generatepdtListurl?opcode=del'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			
 		}
 		else{
 			log = "<a href='loginpage'><i class='bi bi-person-fill'></i> <b>Log-In</b></a>";
 			insertProductCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			insertProductNav = "<a href='loginpage'>Insert Product Name</a>";
-			updateProductSalesNav = "<a href='loginpage'>Insert/Update Product's Sales</a>";
-			updateProductSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			insertProductSalesNav = "<a href='loginpage'>Insert Product's Sales</a>";
+			insertProductSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			deleteSalesNav = "<a href='loginpage'>Delete Product's Sales</a>";
 			deleteSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 		}
@@ -66,10 +66,10 @@
                     <div class="dropdown-content">
                     <!-- Change -->
                       	<%=insertProductNav %>
-                        <%=updateProductSalesNav %>
+                        <%=insertProductSalesNav %>
                         <%=deleteSalesNav %>
                         <a href='#'>Visualize Sales Report</a>
-                        <a href='#'>Add Shops of the Company</a>
+                        <a href='#'>Update Product's Sales Report</a>
                     </div>
                 </div>
             </li>

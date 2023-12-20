@@ -75,7 +75,7 @@
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <%=updateProductSalesCard %>
+                                <%=insertProductSalesCard %>
                             </div>
                         </div>
                     </div>

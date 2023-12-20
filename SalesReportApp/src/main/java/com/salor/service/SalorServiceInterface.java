@@ -13,6 +13,7 @@ public interface SalorServiceInterface {
 	public String checkProductIdService(String productId,String userId);
 	public String loginAccountService(SalorAccountLogin accLog);
 	public String insertProductService(SalorProductBean pdt,String userId);
+	public String insertProductSalesService(SalorProductBean pdt,String userId);
 	public String updateProductService(SalorProductBean pdt);
 	public String deleteProductService(SalorProductBean pdt);
 	public String deleteAllProductDetailsService(String pdtId,String userId);

@@ -653,4 +653,74 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		return status;
 	}
 
+	@Override
+	public String insertProductSales(SalorProductBean pdt, String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		
+		//Declaring a count variable to keep a tab that how many rows got affected due to the insertion into the database
+		int count = 0;
+		
+		//Declaring a status variable to see what's the status of the insertion of record into the database
+		String status = null;
+		
+		try {
+			
+			//Establishing Connection with the Organizations database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Getting the values of the attributes of the SalorProductBean Class
+			String productId = pdt.getProductId();
+			double productcp = pdt.getCostPerProduct();
+			double productsp = pdt.getSpPerProduct();
+			int quantityManufactured = pdt.getQuantityManufactured();
+			int quantitySold = pdt.getQuantitySold();
+			double totalCost = pdt.getTotalCostOfProduction();
+			double totalSales = pdt.getTotalSales();
+			double netProfit = pdt.getNetProfit();
+			double netLoss = pdt.getNetLoss();
+			String dateBought = "'"+pdt.getDateBought()+"'";
+			String dateSold = "'"+pdt.getDateSold()+"'";
+			
+			//Creating the QueryString
+			String query = "INSERT INTO "+productId+" VALUES("+productcp+","+productsp+","+quantityManufactured
+					+","+quantitySold+","+totalCost+","+totalSales+","+netProfit+","+netLoss
+					+","+dateBought+","+dateSold+")";
+			
+			if(st != null) {
+				count = st.executeUpdate(query);
+				if(count == 1) {
+					status = "success";
+				}
+				else
+					status = "failure";
+			}
+			
+		}catch (SQLException se) {
+			if(se.getErrorCode() == 1)
+				status = "Duplicate cannot be inserted to Primary Key Column.";
+			if(se.getErrorCode() == 1400)
+				status = "Null cannot be Inserted to primary key column.";
+			if(se.getErrorCode() >= 900 && se.getErrorCode() <= 999)
+				status = "Inavlid column Names or table name or SQL keywords";
+			if(se.getErrorCode() == 12899)
+				status = "Do not insert more than column size data columns";
+			System.out.println(se.toString());
+			se.printStackTrace();
+			
+		} catch (Exception e) {
+			status = "error";
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+
 }

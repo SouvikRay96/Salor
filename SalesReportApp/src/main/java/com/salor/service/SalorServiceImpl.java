@@ -86,4 +86,11 @@ public class SalorServiceImpl implements SalorServiceInterface {
 		return status;
 	}
 
+	@Override
+	public String insertProductSalesService(SalorProductBean pdt, String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.insertProductSales(pdt, userId);
+		return status;
+	}
+
 }
