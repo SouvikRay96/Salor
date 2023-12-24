@@ -38,45 +38,55 @@ public class InsertRecordServlet extends HttpServlet {
 		String userid = (String)session.getAttribute("userid");
 		//Creating the SalorService Class Object
 		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
-		
-		//Generating the ProductId
-		String productId = null;
-		int min = 100,max = 10000;
-		Random rand = new Random();
-		int id = rand.nextInt(max-min + 1)+min,flag = 0;
-		productId = "PDT" + id;
-		do {
-			String check = salorService.checkProductIdService(productId,userid);
-			if(check.equalsIgnoreCase("success"))
-				flag = 1;
-			else {
-				id = rand.nextInt(max-min + 1)+min;
-				productId = "PDT" + id;
-			}
-		}while(flag == 0);
-		
-		//System.out.println("The ProductId is  : "+productId);
-		
-		
-		//Creating SalorProductBean Class Object
-		SalorProductBean salorPdt = new SalorProductBean();
-		
-		//Setting the object attributes with the form data values
-		salorPdt.setProductId(productId);
-		salorPdt.setProductName(productName);
-		
-		
-		//Sending the salor Product Object to the Service class
-		String status = salorService.insertProductService(salorPdt,userid);
 		String insertmessage = null;
-		if(status.equalsIgnoreCase("success")) {
-			insertmessage = "Product Name Inserted Successfully";
+		
+		//Checking the product to be inserted is already present in the Organization's Database or not
+		String duplicateCheck = salorService.duplicateProductService(productName, userid);
+		if(duplicateCheck.equalsIgnoreCase("duplicate")) {
+			insertmessage = "Duplicate Product Cannot be Inserted ... Product Already present in the Organization's database";
 		}
-		else if(status.equalsIgnoreCase("failure")) {
-			insertmessage = "Product Name Cannot be Inserted";
+		else if(duplicateCheck.equalsIgnoreCase("error")) {
+			insertmessage = "Some Error Occured ... Sorry !!! Please Try Again";
 		}
 		else {
-			insertmessage = "Some Error Occured while inserting the Product into the database";
+			//Generating the ProductId
+			String productId = null;
+			int min = 100,max = 10000;
+			Random rand = new Random();
+			int id = rand.nextInt(max-min + 1)+min,flag = 0;
+			productId = "PDT" + id;
+			do {
+				String check = salorService.checkProductIdService(productId,userid);
+				if(check.equalsIgnoreCase("success"))
+					flag = 1;
+				else {
+					id = rand.nextInt(max-min + 1)+min;
+					productId = "PDT" + id;
+				}
+			}while(flag == 0);
+			
+			//System.out.println("The ProductId is  : "+productId);
+			
+			
+			//Creating SalorProductBean Class Object
+			SalorProductBean salorPdt = new SalorProductBean();
+			
+			//Setting the object attributes with the form data values
+			salorPdt.setProductId(productId);
+			salorPdt.setProductName(productName);
+			
+			
+			//Sending the salor Product Object to the Service class
+			String status = salorService.insertProductService(salorPdt,userid);
+			if(status.equalsIgnoreCase("success")) {
+				insertmessage = "Product Name Inserted Successfully";
+			}
+			else if(status.equalsIgnoreCase("failure")) {
+				insertmessage = "Product Name Cannot be Inserted";
+			}
+			else {
+				insertmessage = "Some Error Occured while inserting the Product into the database";
+			}
 		}
 		
 		session.setAttribute("insertmessage", insertmessage);

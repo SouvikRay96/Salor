@@ -12,6 +12,7 @@ public interface SalorServiceInterface {
 	public String checkUserIdService(String userId);
 	public String checkProductIdService(String productId,String userId);
 	public String loginAccountService(SalorAccountLogin accLog);
+	public String duplicateProductService(String productName,String userId);
 	public String insertProductService(SalorProductBean pdt,String userId);
 	public String insertProductSalesService(SalorProductBean pdt,String userId);
 	public String updateProductService(SalorProductBean pdt);

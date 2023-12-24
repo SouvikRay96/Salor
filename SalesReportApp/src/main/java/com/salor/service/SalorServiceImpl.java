@@ -93,4 +93,11 @@ public class SalorServiceImpl implements SalorServiceInterface {
 		return status;
 	}
 
+	@Override
+	public String duplicateProductService(String productName, String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.duplicateProduct(productName, userId);
+		return status;
+	}
+
 }

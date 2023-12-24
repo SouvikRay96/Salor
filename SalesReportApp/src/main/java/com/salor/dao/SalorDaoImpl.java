@@ -718,8 +718,75 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		} catch (Exception e) {
 			status = "error";
 			e.printStackTrace();
+		} finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
+		return status;
+	}
+
+	@Override
+	public String duplicateProduct(String productName, String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Declaring a status variable to return the status whether the product is duplicate or not
+		String status = null;
+		
+		try {
+			
+			//Establishing the connection with the Organization Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating the Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating a Query for fetching all the products present in the Organization
+			String query = "SELECT * FROM PRODUCTLIST";
+			
+			if(st != null) {
+				rst = st.executeQuery(query);
+				while(rst.next()) {
+					if(productName.equalsIgnoreCase(rst.getString(2))) {
+						status = "duplicate";
+						break;
+					}
+					else {
+						status = "success";
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			status = "error";
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 		return status;
 	}
 
