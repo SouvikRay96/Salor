@@ -53,6 +53,9 @@ public class GenerateProductListServlet extends HttpServlet {
 			//Redirecting to the deleteProductSales.jsp page
 			url = "delPdtSalesurl";		
 		}
+		else if(opcode.equalsIgnoreCase("view")) {
+			url = "viewSales";
+		}
 		response.sendRedirect(url);
 		
 	}

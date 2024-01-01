@@ -119,7 +119,7 @@
                             <br>
                             <div class="procedButton">
                             <!-- Change -->
-                                <a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>
+                                <%=viewSalesCard %>
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ public interface SalorDaoInterface {
 	public String updateProduct(SalorProductBean pdt);
 	public String deleteProduct(SalorProductBean pdt);
 	public String deleteAllProductDetails(String pdtId,String userId);
-	public void visualizeReport(SalorAccountLogin acclog);
+	public SalorProductBean[] visualizeReport(String pdtId,String userId);
 	public String[] profileInfo(String userid);
 	public String[] productList(String userId);
 	

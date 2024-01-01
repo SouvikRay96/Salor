@@ -74,8 +74,10 @@ public class SalorServiceImpl implements SalorServiceInterface {
 	}
 
 	@Override
-	public void visualizeReportService(SalorAccountLogin acclog) {
-		// TODO Auto-generated method stub
+	public SalorProductBean[] visualizeReportService(String pdtId,String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		SalorProductBean[] productsales = salorDao.visualizeReport(pdtId, userId);
+		return productsales;
 
 	}
 

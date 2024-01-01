@@ -116,6 +116,40 @@
   	<url-pattern>/loginurl</url-pattern>
   </servlet-mapping>
   
+  <!-- Update Sales Report URL Configuration -->
+  <servlet>
+  	<servlet-name>updateSales</servlet-name>
+  	<jsp-file>/pages/updateSales.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>updateSales</servlet-name>
+  	<url-pattern>/updateSales</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Viewing of Sales Report URL Configuration -->
+  <servlet>
+  	<servlet-name>viewSales</servlet-name>
+  	<jsp-file>/pages/viewSales.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>viewSales</servlet-name>
+  	<url-pattern>/viewSales</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Sales Report of the Product URL Configuration -->
+  <servlet>
+  	<servlet-name>salesReport</servlet-name>
+  	<jsp-file>/pages/salesreport.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>salesReport</servlet-name>
+  	<url-pattern>/salesreport</url-pattern>
+  </servlet-mapping>
+  
+  
   
   
   

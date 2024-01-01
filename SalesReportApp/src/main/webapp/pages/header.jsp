@@ -26,6 +26,7 @@
 		String insertProductNav = null;
 		String insertProductSalesNav = null,insertProductSalesCard = null;
 		String deleteSalesNav = null,deleteSalesCard = null;
+		String viewSalesNav = null,viewSalesCard = null;
 		if(session.getAttribute("pwd") != null && session.getAttribute("userid") != null){
 			log = "<a href='logout'><i class='bi bi-person-fill'></i> <b>Log-Out</b></a>";
 			insertProductCard = "<a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
@@ -34,6 +35,8 @@
 			insertProductSalesCard = "<a href='generatepdtListurl?opcode=ins'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			deleteSalesNav = "<a href='generatepdtListurl?opcode=del'>Delete Product's Sales</a>";
 			deleteSalesCard = "<a href='generatepdtListurl?opcode=del'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			viewSalesNav = "<a href='generatepdtListurl?opcode=view'>Visualize Sales Report</a>";
+			viewSalesCard = "<a href='generatepdtListurl?opcode=view'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			
 		}
 		else{
@@ -44,6 +47,9 @@
 			insertProductSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			deleteSalesNav = "<a href='loginpage'>Delete Product's Sales</a>";
 			deleteSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			viewSalesNav = "<a href='loginpage'>Visualize Sales Report</a>";
+			viewSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			
 		}
 	%>
 	    <!-- Navigation Bar -->
@@ -68,7 +74,7 @@
                       	<%=insertProductNav %>
                         <%=insertProductSalesNav %>
                         <%=deleteSalesNav %>
-                        <a href='#'>Visualize Sales Report</a>
+                        <%=viewSalesNav %>
                         <a href='#'>Update Product's Sales Report</a>
                     </div>
                 </div>
