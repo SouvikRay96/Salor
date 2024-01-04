@@ -35,6 +35,9 @@
 	
 	<!-- Body Section -->
 		<h2>${productId } -- ${productName } </h2>
+		<br>
+		<center><h3 style="color: white">${filterMessage } </h3></center>
+		<br>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
@@ -71,7 +74,7 @@
     </table>
 </div>	
 
-<form class="loginform">
+<form action="filtersalesreport" class="loginform" method="post">
 		<h3>Date Bought/ Manufactured</h3>
 
 		<select name="dateBought">
@@ -81,14 +84,14 @@
 			</c:forEach>
 		</select>
 				
-		<select id="month">
+		<select name="monthBought">
 		    <option>--Select Month--</option>
 			<c:forEach items="<%=months %>" var="month">
 				<option value="${month }">${month }</option>
 			</c:forEach>
 		</select> 
 		
-		<select id="year">
+		<select name="yearBought">
 		    <option value="hide">-- Year --</option>
 		    <option value="2020">2020</option>
 		    <option value="2021">2021</option>
@@ -105,21 +108,21 @@
 		<br>
 		<h3>Date Sold</h3>
 
-		<select name="dateBought">
+		<select name="dateSold">
 			<option>--Select Date--</option>
 			<c:forEach items="<%=dates %>" var="date">
 				<option value="${date }">${date }</option>
 			</c:forEach>
 		</select>
 				
-		<select id="month">
+		<select name="monthSold">
 		    <option>--Select Month--</option>
 			<c:forEach items="<%=months %>" var="month">
 				<option value="${month }">${month }</option>
 			</c:forEach>
 		</select> 
 		
-		<select id="year">
+		<select name="yearSold">
 		    <option value="hide">-- Year --</option>
 		    <option value="2020">2020</option>
 		    <option value="2021">2021</option>

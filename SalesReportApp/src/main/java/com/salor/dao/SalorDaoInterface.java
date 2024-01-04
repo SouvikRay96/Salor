@@ -18,5 +18,6 @@ public interface SalorDaoInterface {
 	public SalorProductBean[] visualizeReport(String pdtId,String userId);
 	public String[] profileInfo(String userid);
 	public String[] productList(String userId);
+	public SalorProductBean[] filterSalesReport(String userId,String productId,String boughtDate,String soldDate);
 	
 }

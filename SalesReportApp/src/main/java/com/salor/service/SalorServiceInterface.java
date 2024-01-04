@@ -21,4 +21,6 @@ public interface SalorServiceInterface {
 	public SalorProductBean[] visualizeReportService(String pdtId,String userId);
 	public String[] profileInfoService(String userId);
 	public String[] productListService(String userId);
+	public SalorProductBean[] filterSalesReportService(String userId,String productId,String boughtDate,String soldDate);
+	
 }

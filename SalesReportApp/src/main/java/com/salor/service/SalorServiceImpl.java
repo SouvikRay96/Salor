@@ -102,4 +102,12 @@ public class SalorServiceImpl implements SalorServiceInterface {
 		return status;
 	}
 
+	@Override
+	public SalorProductBean[] filterSalesReportService(String userId, String productId, String boughtDate,
+			String soldDate) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		SalorProductBean[] productsales = salorDao.filterSalesReport(userId, productId, boughtDate, soldDate);
+		return productsales;
+	}
+
 }

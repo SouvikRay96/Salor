@@ -857,4 +857,82 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		return status;
 	}
 
+	@Override
+	public SalorProductBean[] filterSalesReport(String userId, String productId, String boughtDate, String soldDate) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Creating a Salor Product Array to store all the sales record of the product
+		SalorProductBean[] productsales = new SalorProductBean[100];
+		SalorProductBean product = null;
+		SalorProductBean[] salesReport = null;
+		
+		int i = 0; // Counter Variable
+		
+		try {
+			
+			//Establishing Connection with the Organization's Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating Statement Object
+			if(con != null)
+				st = con.createStatement();
+			
+			//select * from pdt3867 where (DATE_BOUGHT BETWEEN '2023-12-04' AND '2024-01-31')
+			//OR (DATE_SOLD BETWEEN '2023-12-04' AND '2024-01-31');
+			//Creating the query
+			String query = "SELECT * FROM "+productId+" WHERE (DATE_BOUGHT BETWEEN '"+boughtDate+"' AND '"+soldDate
+					+"') OR (DATE_SOLD BETWEEN '"+boughtDate+"' AND '"+soldDate+"')";
+			
+			//Executing the Query and Creating the ResultSet Object
+			if(st != null) {
+				rst = st.executeQuery(query);
+			}
+			
+			while(rst.next()) {
+				product = new SalorProductBean();
+				product.setCostPerProduct(Double.parseDouble(rst.getString(1)));
+				product.setSpPerProduct(Double.parseDouble(rst.getString(2)));
+				product.setQuantityManufactured(Integer.parseInt(rst.getString(3)));
+				product.setQuantitySold(Integer.parseInt(rst.getString(4)));
+				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(5)));
+				product.setTotalSales(Double.parseDouble(rst.getString(6)));
+				product.setNetProfit(Double.parseDouble(rst.getString(7)));
+				product.setNetLoss(Double.parseDouble(rst.getString(8)));
+				product.setDateBought(rst.getString(9));
+				product.setDateSold(rst.getString(10));
+				productsales[i] = product;
+				i++;
+			}
+			salesReport = new SalorProductBean[i];
+			for(int j = 0; j<i; j++) {
+				salesReport[j] = productsales[j];
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return salesReport;
+	}
+
 }
