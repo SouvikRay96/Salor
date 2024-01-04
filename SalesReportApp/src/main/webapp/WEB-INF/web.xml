@@ -149,6 +149,27 @@
   	<url-pattern>/salesreport</url-pattern>
   </servlet-mapping>
   
+  <!-- Modify Product Selection URL Configuration -->
+  <servlet>
+  	<servlet-name>modifyProduct</servlet-name>
+  	<jsp-file>/pages/modifyReport.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>modifyProduct</servlet-name>
+  	<url-pattern>/modifySales</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Update and Delete Sales URL Configuration -->
+  <servlet>
+  	<servlet-name>updateDelete</servlet-name>
+  	<jsp-file>/pages/updateAndDeleteSales.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>updateDelete</servlet-name>
+  	<url-pattern>/updateDeleteSales</url-pattern>
+  </servlet-mapping>
   
   
   

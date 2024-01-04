@@ -56,6 +56,9 @@ public class GenerateProductListServlet extends HttpServlet {
 		else if(opcode.equalsIgnoreCase("view")) {
 			url = "viewSales";
 		}
+		else if(opcode.equalsIgnoreCase("update")) {
+			url = "modifySales";
+		}
 		response.sendRedirect(url);
 		
 	}

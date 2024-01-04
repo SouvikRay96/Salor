@@ -33,6 +33,7 @@ public class ViewSalesReportServlet extends HttpServlet {
 		
 		//Retrieving Product from the user submitted form
 		String product = request.getParameter("productName");
+		String opcode = request.getParameter("opcode");
 		
 		//Getting the productId
 		String[] temp = product.split("--");
@@ -47,7 +48,14 @@ public class ViewSalesReportServlet extends HttpServlet {
 		session.setAttribute("productsales", productsales);
 		session.setAttribute("productName", productName);
 		session.setAttribute("productId", productId);
-		response.sendRedirect("salesreport");
+		
+		//Declaring an url variable to redirect the page based on the request
+		String url = null;
+		if(opcode.equalsIgnoreCase("view"))
+			url = "salesreport";
+		else if(opcode.equalsIgnoreCase("modify"))
+			url = "updateDeleteSales";
+		response.sendRedirect(url);
 		
 	}
 

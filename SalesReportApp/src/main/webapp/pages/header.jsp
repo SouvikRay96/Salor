@@ -27,6 +27,7 @@
 		String insertProductSalesNav = null,insertProductSalesCard = null;
 		String deleteSalesNav = null,deleteSalesCard = null;
 		String viewSalesNav = null,viewSalesCard = null;
+		String updateNav = null,updateCard = null;
 		if(session.getAttribute("pwd") != null && session.getAttribute("userid") != null){
 			log = "<a href='logout'><i class='bi bi-person-fill'></i> <b>Log-Out</b></a>";
 			insertProductCard = "<a href='insertpdturl'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
@@ -37,6 +38,8 @@
 			deleteSalesCard = "<a href='generatepdtListurl?opcode=del'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			viewSalesNav = "<a href='generatepdtListurl?opcode=view'>Visualize Sales Report</a>";
 			viewSalesCard = "<a href='generatepdtListurl?opcode=view'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			updateNav = "<a href='generatepdtListurl?opcode=update'>Update Product's Sales Report</a>";
+			updateCard = "<a href='generatepdtListurl?opcode=update'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			
 		}
 		else{
@@ -49,6 +52,8 @@
 			deleteSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			viewSalesNav = "<a href='loginpage'>Visualize Sales Report</a>";
 			viewSalesCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
+			updateNav = "<a href='loginpage'>Update Product's Sales Report</a>";
+			updateCard = "<a href='loginpage'><b>Proceed </b><i class='bi bi-arrow-right-circle-fill'></i></a>";
 			
 		}
 	%>
@@ -75,7 +80,7 @@
                         <%=insertProductSalesNav %>
                         <%=deleteSalesNav %>
                         <%=viewSalesNav %>
-                        <a href='#'>Update Product's Sales Report</a>
+                        <%=updateNav %>
                     </div>
                 </div>
             </li>

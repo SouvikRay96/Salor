@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Salor | View Sales</title>
+<title>Salor | Modify Sales</title>
 <link rel="stylesheet" href="pages/LoginformStyles.css">
 </head>
 <body>
@@ -21,11 +21,11 @@
 	<div class="bg bg3"></div>
 	
 	<!-- Body Section -->
-		<form action="viewsalesreportservlet?opcode=view" class="loginform" method = "post" onsubmit = "return validate(this)">
-			<h2 class="title" style="color:black;text-align: center;">Viewing of Product's Sales</h2>
+		<form action="viewsalesreportservlet?opcode=modify" class="loginform" method = "post" onsubmit = "return validate(this)">
+			<h2 class="title" style="color:black;text-align: center;">Modify Product's Sales</h2>
 			<span style="color:red">${errorMessage }</span>
     		
-    		<label for="fname" class="label">Name of the Product you want to view</label><br>
+    		<label for="fname" class="label">Name of the Product you want to Modify</label><br>
 				<span id="pdtnameError" style="color:red"></span>				
 				<select name="productName">
 					<option>--Select the Product--</option>
