@@ -7,13 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Salor | View Sales</title>
-<link rel="stylesheet" href="pages/LoginformStyles.css">
+<link rel="stylesheet" href="pages/LoginformStyles.css"> 
 <link rel="stylesheet" href="pages/tablestyle.css">
 </head>
 <body>
 
 	<%
 		SalorProductBean[] salesReport = (SalorProductBean[])session.getAttribute("productsales");
+	%>
+	
+	<%
+		String[] dates = new String[31];
+		String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+		for(int i = 1; i<=31; i++){
+			dates[i-1] = Integer.toString(i);
+		}
 	%>
 	
 	
@@ -59,72 +67,78 @@
         	</tr>
         
         </c:forEach>
-        <!-- <tr>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-            <td>Content 2</td>
-        </tr>
-        <tr>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-            <td>Content 3</td>
-        </tr>
-        <tr>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-            <td>Content 4</td>
-        </tr>
-        <tr>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-            <td>Content 5</td>
-        </tr>
-        <tr>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-            <td>Content 6</td>
-        </tr>
-        <tr>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-            <td>Content 7</td>
-        </tr>
-        <tr>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-            <td>Content 8</td>
-        </tr>
-        <tr>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-            <td>Content 9</td>
-        </tr>
-        <tr>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-            <td>Content 10</td>
-        </tr> -->
         <tbody>
     </table>
 </div>	
+
+<form class="loginform">
+		<h3>Date Bought/ Manufactured</h3>
+
+		<select name="dateBought">
+			<option>--Select Date--</option>
+			<c:forEach items="<%=dates %>" var="date">
+				<option value="${date }">${date }</option>
+			</c:forEach>
+		</select>
+				
+		<select id="month">
+		    <option>--Select Month--</option>
+			<c:forEach items="<%=months %>" var="month">
+				<option value="${month }">${month }</option>
+			</c:forEach>
+		</select> 
+		
+		<select id="year">
+		    <option value="hide">-- Year --</option>
+		    <option value="2020">2020</option>
+		    <option value="2021">2021</option>
+		    <option value="2022">2022</option>
+		    <option value="2023">2023</option>
+		    <option value="2024">2024</option>
+		    <option value="2025">2025</option>
+		    <option value="2026">2026</option>
+		    <option value="2027">2027</option>
+		    <option value="2028">2028</option>
+		    <option value="2029">2029</option>
+		    <option value="2030">2030</option>
+		</select>	
+		<br>
+		<h3>Date Sold</h3>
+
+		<select name="dateBought">
+			<option>--Select Date--</option>
+			<c:forEach items="<%=dates %>" var="date">
+				<option value="${date }">${date }</option>
+			</c:forEach>
+		</select>
+				
+		<select id="month">
+		    <option>--Select Month--</option>
+			<c:forEach items="<%=months %>" var="month">
+				<option value="${month }">${month }</option>
+			</c:forEach>
+		</select> 
+		
+		<select id="year">
+		    <option value="hide">-- Year --</option>
+		    <option value="2020">2020</option>
+		    <option value="2021">2021</option>
+		    <option value="2022">2022</option>
+		    <option value="2023">2023</option>
+		    <option value="2024">2024</option>
+		    <option value="2025">2025</option>
+		    <option value="2026">2026</option>
+		    <option value="2027">2027</option>
+		    <option value="2028">2028</option>
+		    <option value="2029">2029</option>
+		    <option value="2030">2030</option>
+		</select>	
+		<br><br>
+		<input type="submit" class="submitbtn" value="Click to View">
+	</form>
+	<br>
+	<br>
+	
 		
 	<!-- Footer Section -->
 	<%@include file="footer.jsp" %> 
