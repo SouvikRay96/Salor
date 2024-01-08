@@ -1,3 +1,4 @@
+<%@page import="com.salor.bean.SalorProductBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Salor | Insert</title>
+<title>Salor | Update Product</title>
 <link rel="stylesheet" href="pages/LoginformStyles.css">
+<link rel="stylesheet" href="pages/tablestyle.css">
 </head>
 <body>
 
@@ -22,30 +24,66 @@
 		for(int i = 1; i<=31; i++){
 			dates[i-1] = Integer.toString(i);
 		}
+		SalorProductBean sales = (SalorProductBean)session.getAttribute("productToUpdate");
 	%>
 	
 	<%@include file="header.jsp" %>
 	<br><br><br>
-		<center><span style="color: white;font-weight: bolder">
-			${productSalesMessage }
-		</span></center>
+	<h2>${productId } -- ${productName } </h2>
+		<br>
+		<%
+			String displayMessage = null;
+			if(request.getAttribute("updateMessage") != null){
+				displayMessage = "<center><h3 style='color: white'>Updated Sale's Record </h3></center>";
+			}
+			else{
+				displayMessage = "<center><h3 style='color: white'>Previous Sale's Record </h3></center>";
+			}
+		%>
 		
-		<form action="insertpdtsales" class="loginform" method = "post" onsubmit = "return validate(this)">
-			<h2 class="title" style="color:black;text-align: center;">Insertion of Product's Sales</h2>
+		<%=displayMessage %>
+		
+		<br>
+		<center><a href="FetchUpdatedRecords"><button class="btn">Back</button></a></center>
+		<br>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+        	<th style="font-size: 14px">Record No.</th>
+            <th style="font-size: 14px">Cost/Product</th>
+            <th style="font-size: 14px">Selling Price/Product</th>
+            <th style="font-size: 14px">Quantity Manufactured</th>
+            <th style="font-size: 14px">Quantity Sold</th>
+            <th style="font-size: 14px">Total Cost</th>
+            <th style="font-size: 14px">Total Sales</th>
+            <th style="font-size: 14px">Net Profit</th>
+            <th style="font-size: 14px">Net Loss</th>
+            <th style="font-size: 14px">Date Bought</th>
+            <th style="font-size: 14px">Date Sold</th>
+        </tr>
+        </thead>
+        <tbody>
+        	<tr>
+        		<td style="font-size: 14px;color: black"><%=sales.getRecordno() %> </td>
+        		<td style="font-size: 14px;color: black"><%=sales.getCostPerProduct() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getSpPerProduct() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getQuantityManufactured() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getQuantitySold() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getTotalCostOfProduction() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getTotalSales() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getNetProfit() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getNetLoss() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getDateBought() %></td>
+        		<td style="font-size: 14px;color: black"><%=sales.getDateSold() %></td>
+        	</tr>
+        <tbody>
+    </table>
+</div>	
+		
+		<form action="updatesalesreport" class="loginform" method = "post" onsubmit = "return validate(this)">
+			<h2 class="title" style="color:black;text-align: center;">Update Product's Sales</h2>
 			<span style="color:red">${errorMessage }</span>
-    		
-    		<label for="fname" class="label">Name of the Product</label><br>
-				<span id="pdtnameError" style="color:red"></span>				
-				<select name="productName">
-					<option>--Select the Product--</option>
-					<c:forEach items="${productList }" var="pdt">
-						<option value="${pdt }">${pdt }</option>
-					</c:forEach>
-				</select>
-				
-			<label for="fname" class="label">Record Number</label><br>
-		    <span id="cpError" style="color:red"></span>
-		    <input type="text" name="recordno" placeholder="Enter Record Number">
 			
 		    <label for="fname" class="label">Cost Price of the Product</label><br>
 		    <span id="cpError" style="color:red"></span>
@@ -55,7 +93,7 @@
 			<span id="spError" style="color:red"></span>
 		    <input type="text" name="productsp" placeholder="Enter Product's SP">
 		    
-		    <label for="fname" class="label">Quantity Manufactured</label><br>
+		    <label for="fname" class="label">Quantity Manufactured/Bought</label><br>
 			<span id="quantityManError" style="color:red"></span>
 		    <input type="text" name="quantityManufactured" placeholder="Number of Products Manufactured">
 		    
@@ -83,8 +121,9 @@
 				</select>
 				
 				<label for="fname" class="label">Year : </label><br>
-				<span id="yearboughtError" style="color:red"></span>
-		    	<input type="text" name="yearBought" placeholder="Enter Year">
+				<span id="yearBoughtError" style="color:red"></span>
+			    <input type="text" name="yearBought" placeholder="Enter Year">
+			    
 		    <br>
 		    	<label for="fname" class="label">Date Sold</label><br>
 			    <label for="fname" class="label">Date : </label><br>
@@ -110,7 +149,7 @@
 			    	<input type="text" name="yearSold" placeholder="Enter Year">
 			    
 		    <br><br>
-		    <input type="submit" value="Insert">
+		    <input type="submit" value="Update Sales">
 		</form>
 		
 		<!-- Form Validation logics -->

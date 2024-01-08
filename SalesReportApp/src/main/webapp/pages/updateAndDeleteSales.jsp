@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="pages/tablestyle.css">
 </head>
 <body>
+
+	<%
+			//Controlling the Back Button after Log_out
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");//HTTP 1.1
+			response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+			response.setHeader("Expires", "0"); //Proxies
+	%>
 	<!-- Header Section -->
 	<%@include file="header.jsp" %>
 	<br><br><br>
@@ -26,41 +33,44 @@
 	<!-- Body Section -->
 	<h2>${productId } -- ${productName } </h2>
 		<br>
-		<center><h3 style="color: white">${filterMessage } </h3></center>
+		<center><h3 style="color: white">${deleteSalesMessage } </h3></center>
 		<br>
+	
 	<div class="table-wrapper">
 	    <table class="fl-table">
 	        <thead>
 	        <tr>
-	            <th style="font-size: 15px">Cost/Product</th>
-	            <th style="font-size: 15px">Selling Price/Product</th>
-	            <th style="font-size: 15px">Quantity Manufactured</th>
-	            <th style="font-size: 15px">Quantity Sold</th>
-	            <th style="font-size: 15px">Total Cost</th>
-	            <th style="font-size: 15px">Total Sales</th>
-	            <th style="font-size: 15px">Net Profit</th>
-	            <th style="font-size: 15px">Net Loss</th>
-	            <th style="font-size: 15px">Date Bought</th>
-	            <th style="font-size: 15px">Date Sold</th>
-	            <th style="font-size: 15px">Update Record</th>
-	            <th style="font-size: 15px">Delete Record</th>
+	        	<th style="font-size: 14px">Record Number</th>
+	            <th style="font-size: 14px">Cost/Product</th>
+	            <th style="font-size: 14px">Selling Price/Product</th>
+	            <th style="font-size: 14px">Quantity Manufactured</th>
+	            <th style="font-size: 14px">Quantity Sold</th>
+	            <th style="font-size: 14px">Total Cost</th>
+	            <th style="font-size: 14px">Total Sales</th>
+	            <th style="font-size: 14px">Net Profit</th>
+	            <th style="font-size: 14px">Net Loss</th>
+	            <th style="font-size: 14px">Date Bought</th>
+	            <th style="font-size: 14px">Date Sold</th>
+	            <th style="font-size: 14px">Update Record</th>
+	            <th style="font-size: 14px">Delete Record</th>
 	        </tr>
 	        </thead>
 	        <tbody>
 	        <c:forEach items="<%=salesReport %>" var="sales">
 	        	<tr>
-	        		<td style="font-size: 16px">${sales.getCostPerProduct() }</td>
-	        		<td style="font-size: 16px">${sales.getSpPerProduct() }</td>
-	        		<td style="font-size: 16px">${sales.getQuantityManufactured() }</td>
-	        		<td style="font-size: 16px">${sales.getQuantitySold() }</td>
-	        		<td style="font-size: 16px">${sales.getTotalCostOfProduction() }</td>
-	        		<td style="font-size: 16px">${sales.getTotalSales() }</td>
-	        		<td style="font-size: 16px">${sales.getNetProfit() }</td>
-	        		<td style="font-size: 16px">${sales.getNetLoss() }</td>
-	        		<td style="font-size: 16px">${sales.getDateBought() }</td>
-	        		<td style="font-size: 16px">${sales.getDateSold() }</td>
-	        		<td><button type="button" class="btn btn-success" style="background-color: green;color: white">Edit</button></td>
-	        		<td><button type="button" class="btn btn-danger" style="background-color: red;color: white">Delete</button></td>
+	        		<td style="font-size: 14px;color: black">${sales.getRecordno() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getCostPerProduct() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getSpPerProduct() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getQuantityManufactured() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getQuantitySold() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getTotalCostOfProduction() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getTotalSales() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getNetProfit() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getNetLoss() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getDateBought() }</td>
+	        		<td style="font-size: 14px;color: black">${sales.getDateSold() }</td>
+	        		<td><a href="updatedeletesalesreportservlet?operation=update&recordno=${sales.getRecordno() }"><button type="button" class="btn btn-success" style="background-color: green;color: white;font-size: 12px">Edit</button></a></td>
+	        		<td><a href="updatedeletesalesreportservlet?operation=delete&recordno=${sales.getRecordno() }"><button type="button" class="btn btn-danger" style="background-color: red;color: white;font-size: 12px">Delete</button></a></td>
 	        	</tr>
 	        
 	        </c:forEach>

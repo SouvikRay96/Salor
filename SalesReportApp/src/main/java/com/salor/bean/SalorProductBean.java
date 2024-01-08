@@ -3,6 +3,13 @@ package com.salor.bean;
 public class SalorProductBean {
 	private String productId;
 	private String productName;
+	private int recordno;
+	public int getRecordno() {
+		return recordno;
+	}
+	public void setRecordno(int recordno) {
+		this.recordno = recordno;
+	}
 	private double costPerProduct;
 	private double spPerProduct;
 	private int quantityManufactured;

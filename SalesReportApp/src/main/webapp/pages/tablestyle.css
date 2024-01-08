@@ -1,15 +1,7 @@
 @charset "UTF-8";
 
-*{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-body{
-    font-family: Helvetica;
-    -webkit-font-smoothing: antialiased;
-    background: rgba( 71, 147, 227, 1);
-}
+
+
 h2{
     text-align: center;
     font-size: 25px;
@@ -28,7 +20,7 @@ h2{
 
 .fl-table {
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: normal;
     border: none;
     border-collapse: collapse;
@@ -45,7 +37,8 @@ h2{
 
 .fl-table td {
     border-right: 1px solid #f8f8f8;
-    font-size: 18px;
+    font-size: 14px;
+    color: black;
 }
 
 .fl-table thead th {
@@ -100,7 +93,7 @@ h2{
         overflow-x: hidden;
         overflow-y: auto;
         width: 120px;
-        font-size: 20px;
+        font-size: 16px;
         text-overflow: ellipsis;
     }
     .fl-table thead th {
@@ -135,124 +128,9 @@ select-background: #c0392b;
 select-width: 220px;
 select-height: 40px; 
 */
-body { 
-  font-family: Lato, Arial;
-  color: #fff;
-  padding: 20px;
-}
-h1 {
-  font-weight: normal;
-  font-size: 40px;
-  font-weight: normal;
-  text-transform: uppercase;
-  span { 
-    font-size: 13px;
-    display: block;
-    padding-left: 4px;
-  }
-}
-p {
-  margin-top: 200px;
-  a {
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 0 5px;
-    background-color: darken(#c0392b, 2);
-    @include transition(all 0.2s ease-in);
-    &:hover {
-      background-color: darken(#c0392b, 5);
-    }
-  }
-}
-.select-hidden {
-  display: none;
-  visibility: hidden;
-  padding-right: 10px;
-}
-.select {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  font-size: 16px;
-  color: #fff;
-  width: 220px;
-  height: 40px;
-}
-.select-styled {
-  position: absolute; 
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #c0392b;
-  padding: 8px 15px;
-  @include transition(all 0.2s ease-in);
-  &:after {
-    content:"";
-    width: 0;
-    height: 0;
-    border: 7px solid transparent;
-    border-color: #fff transparent transparent transparent;
-    position: absolute;
-    top: 16px;
-    right: 10px;
-  }
-  &:hover {
-    background-color: darken(#c0392b, 2);
-  }
-  &:active, &.active {
-    background-color: darken(#c0392b, 5);
-    &:after {
-      top: 9px;
-      border-color: transparent transparent #fff transparent;
-    }
-  }
-}
 
-.select-options {
-  display: none; 
-  position: absolute;
-  top: 100%;
-  right: 0;
-  left: 0;
-  z-index: 999;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: darken(#c0392b, 5);
-  li {
-    margin: 0;
-    padding: 12px 0;
-    text-indent: 15px;
-    border-top: 1px solid darken(#c0392b, 10);
-    @include transition(all 0.15s ease-in);
-    &:hover, 
-    &.is-selected {
-      color: #c0392b;
-      background: #fff;
-    }
-    &[rel="hide"] {
-      display: none;
-    }
-  }
-}
-.submitbtn {
-  /*width: 100%;*/
-  background-image: linear-gradient(
-    45deg,
-    rgb(51, 139, 204),
-    rgb(78, 222, 222)
-   );
-  color: rgb(0, 0, 0);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-weight: bolder;
-  font-size: 18px
+
+
+td{
+	color: black;
 }

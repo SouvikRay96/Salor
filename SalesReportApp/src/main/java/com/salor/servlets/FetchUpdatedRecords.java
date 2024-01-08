@@ -13,10 +13,10 @@ import com.salor.factory.SalorServiceFactory;
 import com.salor.service.SalorServiceInterface;
 
 /**
- * Servlet implementation class ViewSalesReportServlet
+ * Servlet implementation class FetchUpdatedRecords
  */
-@WebServlet("/viewsalesreportservlet")
-public class ViewSalesReportServlet extends HttpServlet {
+@WebServlet("/FetchUpdatedRecords")
+public class FetchUpdatedRecords extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,21 +24,13 @@ public class ViewSalesReportServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Setting the Content Type
+		//Setting the response type
 		response.setContentType("text/html");
 		
-		//Getting the userid from the Session Object
+		//Getting the productId and the userid from the session object
 		HttpSession session = request.getSession();
 		String userid = (String)session.getAttribute("userid");
-		
-		//Retrieving Product from the user submitted form
-		String opcode = request.getParameter("opcode");
-		String product = request.getParameter("productName");
-		
-		//Getting the productId
-		String[] temp = product.split("--");
-		String productId = temp[0];
-		String productName = temp[1];
+		String productId = (String)session.getAttribute("productId");
 		
 		//Creating Service Layer Object
 		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
@@ -46,18 +38,9 @@ public class ViewSalesReportServlet extends HttpServlet {
 		
 		//Setting the Attribute productsales of the session Object
 		session.setAttribute("productsales", productsales);
-		session.setAttribute("productName", productName);
-		session.setAttribute("productId", productId);
 		
+		response.sendRedirect("updateDeleteSales");
 		
-		
-		//Declaring an url variable to redirect the page based on the request
-		String url = null;
-		if(opcode.equalsIgnoreCase("view"))
-			url = "salesreport";
-		else if(opcode.equalsIgnoreCase("modify"))
-			url = "updateDeleteSales";
-		response.sendRedirect(url);
 		
 	}
 

@@ -12,8 +12,9 @@ public interface SalorDaoInterface {
 	public String duplicateProduct(String productName,String userId);
 	public String insertProduct(SalorProductBean pdt,String userId);
 	public String insertProductSales(SalorProductBean pdt,String userId);
-	public String updateProduct(SalorProductBean pdt);
-	public String deleteProduct(SalorProductBean pdt);
+	public SalorProductBean fetchProduct(int recordno,String userId,String productId);
+	public String updateProduct(SalorProductBean pdt,String userId);
+	public String deleteProduct(SalorProductBean pdt,String userId);
 	public String deleteAllProductDetails(String pdtId,String userId);
 	public SalorProductBean[] visualizeReport(String pdtId,String userId);
 	public String[] profileInfo(String userid);

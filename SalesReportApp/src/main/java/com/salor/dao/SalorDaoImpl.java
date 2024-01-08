@@ -10,6 +10,8 @@ import com.salor.bean.SalorAccountLogin;
 import com.salor.bean.SalorAccountsRegister;
 import com.salor.bean.SalorProductBean;
 import com.salor.factory.ConnectionFactory;
+import com.salor.factory.SalorServiceFactory;
+import com.salor.service.SalorServiceInterface;
 
 public class SalorDaoImpl implements SalorDaoInterface {
 
@@ -548,7 +550,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			if(flag == 0) {
 				//Command for creation of the Product Table according to the generated Id
 				String createTable = " CREATE TABLE "+productId
-						+"(COST_PRICE_PER_PRODUCT DOUBLE(7,3),"
+						+"(RECORD_NO INT PRIMARY KEY,COST_PRICE_PER_PRODUCT DOUBLE(7,3),"
 						+"SELLING_PRICE_PER_PRODUCT DOUBLE(7,3),"
 						+"QUANTITY_IN_STOCK INT,"
 						+"QUANTITY_SOLD INT,"
@@ -574,20 +576,167 @@ public class SalorDaoImpl implements SalorDaoInterface {
 		} catch (Exception e) {
 			status = "error";
 			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		return status;
 	}
 
 	@Override
-	public String updateProduct(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateProduct(SalorProductBean pdt,String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		
+		
+		//Declaring a status variable to return the status after update
+		String status = null;
+		
+		//Declaring a Counter variable to get how many rows are affected after updation of records
+		int count = 0;
+		
+		//Initializing details of the product Sales to be updated
+		String productId = pdt.getProductId();
+		String recordno = Integer.toString(pdt.getRecordno());
+		String productcp = Double.toString(pdt.getCostPerProduct());
+		String productsp = Double.toString(pdt.getSpPerProduct());
+		String quantityManufactured = Integer.toString(pdt.getQuantityManufactured());
+		String quantitySold = Integer.toString(pdt.getQuantitySold());
+		String totalCost = Double.toString(pdt.getTotalCostOfProduction());
+		String totalSales = Double.toString(pdt.getTotalSales());
+		String netProfit = Double.toString(pdt.getNetProfit());
+		String netLoss = Double.toString(pdt.getNetLoss());
+		String dateBought = "'"+pdt.getDateBought()+"'";
+		String dateSold = "'"+pdt.getDateSold()+"'";
+		
+		try {
+			
+			//Establishing connection with the Organization's Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating the Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating the String query
+			String query = "UPDATE "+productId
+					+" SET COST_PRICE_PER_PRODUCT="+productcp
+					+",SELLING_PRICE_PER_PRODUCT="+productsp
+					+",QUANTITY_IN_STOCK="+quantityManufactured
+					+",QUANTITY_SOLD="+quantitySold
+					+",TOTAL_COST_OF_PRODUCTION="+totalCost
+					+",TOTAL_SALES="+totalSales
+					+",NET_PROFIT="+netProfit
+					+",NET_LOSS="+netLoss
+					+",DATE_BOUGHT="+dateBought
+					+",DATE_SOLD="+dateSold
+					+" WHERE RECORD_NO="+recordno;
+			
+			//Executing the String query
+			if(st != null) {
+				count = st.executeUpdate(query);
+				if(count == 1) {
+					status = "success";
+				}
+				else {
+					status = "failure";
+				}
+			}
+			
+		} catch (Exception e) {
+			status = "error";
+			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(con != null) {
+					con.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return status;
 	}
 
 	@Override
-	public String deleteProduct(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteProduct(SalorProductBean pdt,String userId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		
+		//Declaring a status variable to return the status of deletion
+		String status = null;
+		
+		//Getting the Record number and the ProductId to be deleted from the SalorProductBean Object
+		int recordno = pdt.getRecordno();
+		String productId = pdt.getProductId();
+		
+		//Declaring a counter variable which will give how many rows in the table are affected after the deletion of the product's sales record
+		int count = 0; //Initially it will be Zero
+		
+		try {
+			
+			//Establishing Connection with the Organization Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating the Query for deletion of the Record
+			String query = "DELETE FROM "+productId+" WHERE RECORD_NO="+recordno;
+			
+			//Execution of the query
+			if(st != null) {
+				count = st.executeUpdate(query);
+				if(count == 1) {
+					status = "success";
+				}
+				else {
+					status = "failure";
+				}
+			}
+			
+		} catch (Exception e) {
+			status = "error";
+			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(con != null) {
+					con.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return status;
 	}
 
 	@Override
@@ -624,16 +773,17 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 			while(rst.next()) {
 				product = new SalorProductBean();
-				product.setCostPerProduct(Double.parseDouble(rst.getString(1)));
-				product.setSpPerProduct(Double.parseDouble(rst.getString(2)));
-				product.setQuantityManufactured(Integer.parseInt(rst.getString(3)));
-				product.setQuantitySold(Integer.parseInt(rst.getString(4)));
-				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(5)));
-				product.setTotalSales(Double.parseDouble(rst.getString(6)));
-				product.setNetProfit(Double.parseDouble(rst.getString(7)));
-				product.setNetLoss(Double.parseDouble(rst.getString(8)));
-				product.setDateBought(rst.getString(9));
-				product.setDateSold(rst.getString(10));
+				product.setRecordno(Integer.parseInt(rst.getString(1)));
+				product.setCostPerProduct(Double.parseDouble(rst.getString(2)));
+				product.setSpPerProduct(Double.parseDouble(rst.getString(3)));
+				product.setQuantityManufactured(Integer.parseInt(rst.getString(4)));
+				product.setQuantitySold(Integer.parseInt(rst.getString(5)));
+				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(6)));
+				product.setTotalSales(Double.parseDouble(rst.getString(7)));
+				product.setNetProfit(Double.parseDouble(rst.getString(8)));
+				product.setNetLoss(Double.parseDouble(rst.getString(9)));
+				product.setDateBought(rst.getString(10));
+				product.setDateSold(rst.getString(11));
 				productsales[i] = product;
 				i++;
 			}
@@ -744,6 +894,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			}
 			
 			//Getting the values of the attributes of the SalorProductBean Class
+			int recordno = pdt.getRecordno();
 			String productId = pdt.getProductId();
 			double productcp = pdt.getCostPerProduct();
 			double productsp = pdt.getSpPerProduct();
@@ -757,7 +908,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			String dateSold = "'"+pdt.getDateSold()+"'";
 			
 			//Creating the QueryString
-			String query = "INSERT INTO "+productId+" VALUES("+productcp+","+productsp+","+quantityManufactured
+			String query = "INSERT INTO "+productId+" VALUES("+recordno+","+productcp+","+productsp+","+quantityManufactured
 					+","+quantitySold+","+totalCost+","+totalSales+","+netProfit+","+netLoss
 					+","+dateBought+","+dateSold+")";
 			
@@ -780,6 +931,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			if(se.getErrorCode() == 12899)
 				status = "Do not insert more than column size data columns";
 			System.out.println(se.toString());
+			status = se.toString();
 			se.printStackTrace();
 			
 		} catch (Exception e) {
@@ -824,6 +976,7 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 			if(st != null) {
 				rst = st.executeQuery(query);
+				status = "success";
 				while(rst.next()) {
 					if(productName.equalsIgnoreCase(rst.getString(2))) {
 						status = "duplicate";
@@ -894,16 +1047,17 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			
 			while(rst.next()) {
 				product = new SalorProductBean();
-				product.setCostPerProduct(Double.parseDouble(rst.getString(1)));
-				product.setSpPerProduct(Double.parseDouble(rst.getString(2)));
-				product.setQuantityManufactured(Integer.parseInt(rst.getString(3)));
-				product.setQuantitySold(Integer.parseInt(rst.getString(4)));
-				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(5)));
-				product.setTotalSales(Double.parseDouble(rst.getString(6)));
-				product.setNetProfit(Double.parseDouble(rst.getString(7)));
-				product.setNetLoss(Double.parseDouble(rst.getString(8)));
-				product.setDateBought(rst.getString(9));
-				product.setDateSold(rst.getString(10));
+				product.setRecordno(Integer.parseInt(rst.getString(1)));
+				product.setCostPerProduct(Double.parseDouble(rst.getString(2)));
+				product.setSpPerProduct(Double.parseDouble(rst.getString(3)));
+				product.setQuantityManufactured(Integer.parseInt(rst.getString(4)));
+				product.setQuantitySold(Integer.parseInt(rst.getString(5)));
+				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(6)));
+				product.setTotalSales(Double.parseDouble(rst.getString(7)));
+				product.setNetProfit(Double.parseDouble(rst.getString(8)));
+				product.setNetLoss(Double.parseDouble(rst.getString(9)));
+				product.setDateBought(rst.getString(10));
+				product.setDateSold(rst.getString(11));
 				productsales[i] = product;
 				i++;
 			}
@@ -930,9 +1084,82 @@ public class SalorDaoImpl implements SalorDaoInterface {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
+			try {
+				if(con != null) {
+					con.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		
 		return salesReport;
+	}
+
+	@Override
+	public SalorProductBean fetchProduct(int recordno,String userId,String productId) {
+		
+		//Resource Declarations
+		Connection con = null;
+		Statement st = null;
+		ResultSet rst = null;
+		
+		//Declaring the SalorProductBean class to hold the information about the product
+		SalorProductBean product = new SalorProductBean();
+		
+		try {
+			
+			//Establishing connection with the Organization's Database
+			con = SalorDaoImpl.connectOrgDatabase(userId);
+			
+			//Creating the Statement Object
+			if(con != null) {
+				st = con.createStatement();
+			}
+			
+			//Creating the String query to fetch the product's record based on the record no
+			String query = "SELECT * FROM "+productId+" WHERE RECORD_NO="+recordno;
+			
+			//Executing the query and generating the resultSet Object
+			if(st != null) {
+				rst = st.executeQuery(query);
+			}
+			
+			if(rst.next()) {
+				product.setRecordno(Integer.parseInt(rst.getString(1)));
+				product.setCostPerProduct(Double.parseDouble(rst.getString(2)));
+				product.setSpPerProduct(Double.parseDouble(rst.getString(3)));
+				product.setQuantityManufactured(Integer.parseInt(rst.getString(4)));
+				product.setQuantitySold(Integer.parseInt(rst.getString(5)));
+				product.setTotalCostOfProduction(Double.parseDouble(rst.getString(6)));
+				product.setTotalSales(Double.parseDouble(rst.getString(7)));
+				product.setNetProfit(Double.parseDouble(rst.getString(8)));
+				product.setNetLoss(Double.parseDouble(rst.getString(9)));
+				product.setDateBought(rst.getString(10));
+				product.setDateSold(rst.getString(11));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(st != null) {
+					st.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if(rst != null) {
+					rst.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		
+		return product;
 	}
 
 }

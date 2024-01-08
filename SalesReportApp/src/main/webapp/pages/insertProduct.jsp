@@ -10,6 +10,14 @@
 <body>
 	<!-- Header Section -->
 	<%@include file="header.jsp" %>
+	
+	<%
+			//Controlling the Back Button after Log_out
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");//HTTP 1.1
+			response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+			response.setHeader("Expires", "0"); //Proxies
+	%>
+	
 	<br><br><br>
 	<!-- Background Animation -->	
 	<div class="bg"></div>
@@ -17,7 +25,7 @@
 	<div class="bg bg3"></div>
 	
 	<!-- Body Section -->
-		<center><span style=color:green; font-weight:bolder>
+		<center><span style="color: white;font-weight: 800;">
 			${insertmessage }
 		</span></center>
 		<form action="insertRecordurl" class="loginform" method = "post" onsubmit = "return validate(this)">

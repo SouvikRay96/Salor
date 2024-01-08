@@ -1,6 +1,8 @@
 package com.salor.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +15,10 @@ import com.salor.factory.SalorServiceFactory;
 import com.salor.service.SalorServiceInterface;
 
 /**
- * Servlet implementation class InsertProductSalesServlet
+ * Servlet implementation class UpdateSalesReport
  */
-@WebServlet("/insertpdtsales")
-public class InsertProductSalesServlet extends HttpServlet {
+@WebServlet("/updatesalesreport")
+public class UpdateSalesReport extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,16 +26,19 @@ public class InsertProductSalesServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Setting the contentType of the page
+		//Setting the Content Type for the Page
 		response.setContentType("text/html");
 		
 		//Getting the userId from the Session Object
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userid");
+		String productId = (String)session.getAttribute("productId");
 		
-		//Retrieving the values from the form 
-		int recordno = Integer.parseInt(request.getParameter("recordno"));
-		String product = request.getParameter("productName");
+		SalorProductBean sales = (SalorProductBean)session.getAttribute("productToUpdate");
+		//Getting the recordno
+		int recordno = sales.getRecordno();
+		
+		//Retrieving the form data
 		double productcp = Double.parseDouble(request.getParameter("productcp"));
 		double productsp = Double.parseDouble(request.getParameter("productsp"));
 		int quantityManufactured = Integer.parseInt(request.getParameter("quantityManufactured"));
@@ -44,9 +49,6 @@ public class InsertProductSalesServlet extends HttpServlet {
 		String dateSold = request.getParameter("dateSold");
 		String monthSold = request.getParameter("monthSold");
 		String yearSold = request.getParameter("yearSold");
-		
-		String[] temp = product.split("--");
-		String productId = temp[0],productName = temp[1];
 		
 		double totalCost = productcp * quantityManufactured;
 		double totalSales = productsp * quantitySold;
@@ -83,13 +85,13 @@ public class InsertProductSalesServlet extends HttpServlet {
 			netProfit=0.0;netLoss=0.0;
 		}
 		
+
 		//Creating the SalorProductBean Class Object
 		SalorProductBean salorpdt = new SalorProductBean();
 		
 		//Setting the values of the SalorProduct Bean Class
 		salorpdt.setRecordno(recordno);
 		salorpdt.setProductId(productId);
-		salorpdt.setProductName(productName);
 		salorpdt.setCostPerProduct(productcp);
 		salorpdt.setSpPerProduct(productsp);
 		salorpdt.setQuantityManufactured(quantityManufactured);
@@ -104,30 +106,26 @@ public class InsertProductSalesServlet extends HttpServlet {
 		//Creating the Object of the SalorService Class
 		SalorServiceInterface salorService = SalorServiceFactory.getSalorServiceObject();
 		
-		//Calling the Service class insertProductSalesService method to communicate with the database
-		String status = salorService.insertProductSalesService(salorpdt, userId);
-		String productSalesMessage = null;
-		
-		//Now Checking the status of the Insertion
+		//Declaring an UpdateMessage variable to display relevant message after update operation
+		String updateMessage = null;
+		String status = salorService.updateProductService(salorpdt,userId);
 		if(status.equalsIgnoreCase("success")) {
-			productSalesMessage = "Insertion of the Product Sales is Successfully Completed";
+			updateMessage = "The Sales record has been updated Successfully";
 		}
 		else if(status.equalsIgnoreCase("failure")) {
-			productSalesMessage = "Some Error Occured while inserting the Product Sales Details.";
-		}
-		else if(status.equalsIgnoreCase("error")) {
-			productSalesMessage = "There is some issue with the coding section\n Details can't be inserted.";
+			updateMessage = "The Sales Record cannot be updated";
 		}
 		else {
-			productSalesMessage = status;
+			updateMessage = "Some Error Occured during update Operation";
 		}
 		
-		//Setting the productSalesMessage attribute
-		session.setAttribute("productSalesMessage", productSalesMessage);
-		System.out.println(productSalesMessage);
-		response.sendRedirect("insertProductSales");
+		//Fetching the Updated Details of the Product's Sales Report which has been updated
+		SalorProductBean productSales = salorService.fetchProductService(recordno, userId, productId);
+		session.setAttribute("productToUpdate", productSales);
 		
-		
+		request.setAttribute("updateMessage", updateMessage);
+		RequestDispatcher rd = request.getRequestDispatcher("updatedInfo");
+		rd.forward(request, response);
 		
 	}
 

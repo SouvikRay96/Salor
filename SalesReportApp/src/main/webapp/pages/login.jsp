@@ -14,7 +14,7 @@
 	
 		<%
 			if(session.getAttribute("userId") != null){
-				out.println("<center><span style='color:green; font-weight:bolder'>"+"You are Successfully Registered with Salor.<br>"
+				out.println("<center><span style='color:white; font-weight:bolder'>"+"You are Successfully Registered with Salor.<br>"
 		+"Kindly Login with the UserId : "+session.getAttribute("userId")+" To avail all the facilities of Salor.</span></center><br>");
 			}
 		%>

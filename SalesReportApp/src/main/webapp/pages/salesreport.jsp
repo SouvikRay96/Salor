@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="com.salor.bean.SalorProductBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +12,14 @@
 <link rel="stylesheet" href="pages/tablestyle.css">
 </head>
 <body>
-
+	
+	<%
+			//Controlling the Back Button after Log_out
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");//HTTP 1.1
+			response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+			response.setHeader("Expires", "0"); //Proxies
+	%>
+	
 	<%
 		SalorProductBean[] salesReport = (SalorProductBean[])session.getAttribute("productsales");
 	%>
@@ -42,31 +50,33 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Cost/Product</th>
-            <th>Selling Price/Product</th>
-            <th>Quantity Manufactured</th>
-            <th>Quantity Sold</th>
-            <th>Total Cost</th>
-            <th>Total Sales</th>
-            <th>Net Profit</th>
-            <th>Net Loss</th>
-            <th>Date Bought</th>
-            <th>Date Sold</th>
+        	<th style="font-size: 14px">Record No.</th>
+            <th style="font-size: 14px">Cost/Product</th>
+            <th style="font-size: 14px">Selling Price/Product</th>
+            <th style="font-size: 14px">Quantity Manufactured</th>
+            <th style="font-size: 14px">Quantity Sold</th>
+            <th style="font-size: 14px">Total Cost</th>
+            <th style="font-size: 14px">Total Sales</th>
+            <th style="font-size: 14px">Net Profit</th>
+            <th style="font-size: 14px">Net Loss</th>
+            <th style="font-size: 14px">Date Bought</th>
+            <th style="font-size: 14px">Date Sold</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="<%=salesReport %>" var="sales">
         	<tr>
-        		<td>${sales.getCostPerProduct() }</td>
-        		<td>${sales.getSpPerProduct() }</td>
-        		<td>${sales.getQuantityManufactured() }</td>
-        		<td>${sales.getQuantitySold() }</td>
-        		<td>${sales.getTotalCostOfProduction() }</td>
-        		<td>${sales.getTotalSales() }</td>
-        		<td>${sales.getNetProfit() }</td>
-        		<td>${sales.getNetLoss() }</td>
-        		<td>${sales.getDateBought() }</td>
-        		<td>${sales.getDateSold() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getRecordno() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getCostPerProduct() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getSpPerProduct() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getQuantityManufactured() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getQuantitySold() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getTotalCostOfProduction() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getTotalSales() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getNetProfit() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getNetLoss() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getDateBought() }</td>
+        		<td style="font-size: 14px;color: black">${sales.getDateSold() }</td>
         	</tr>
         
         </c:forEach>

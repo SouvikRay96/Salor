@@ -171,8 +171,16 @@
   	<url-pattern>/updateDeleteSales</url-pattern>
   </servlet-mapping>
   
+  <!-- UpdateSales.jsp page URL Configuration -->
+  <servlet>
+  	<servlet-name>productToBeUpdated</servlet-name>
+  	<jsp-file>/pages/updatesales.jsp</jsp-file>
+  </servlet>
   
-  
+  <servlet-mapping>
+  	<servlet-name>productToBeUpdated</servlet-name>
+  	<url-pattern>/updatedInfo</url-pattern>
+  </servlet-mapping>  
   
   
   

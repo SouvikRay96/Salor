@@ -62,15 +62,17 @@ public class SalorServiceImpl implements SalorServiceInterface {
 	}
 
 	@Override
-	public String updateProductService(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateProductService(SalorProductBean pdt,String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.updateProduct(pdt, userId);
+		return status;
 	}
 
 	@Override
-	public String deleteProductService(SalorProductBean pdt) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteProductService(SalorProductBean pdt,String userId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		String status = salorDao.deleteProduct(pdt,userId);
+		return status;
 	}
 
 	@Override
@@ -108,6 +110,13 @@ public class SalorServiceImpl implements SalorServiceInterface {
 		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
 		SalorProductBean[] productsales = salorDao.filterSalesReport(userId, productId, boughtDate, soldDate);
 		return productsales;
+	}
+
+	@Override
+	public SalorProductBean fetchProductService(int recordno,String userId,String productId) {
+		SalorDaoInterface salorDao = SalorDaoFactory.getSalorDaoObject();
+		SalorProductBean product = salorDao.fetchProduct(recordno,userId,productId);
+		return product;
 	}
 
 }

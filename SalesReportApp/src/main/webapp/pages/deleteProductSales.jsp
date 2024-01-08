@@ -11,6 +11,13 @@
 <body>
 	<!-- Header Section -->
 	<%@include file="header.jsp" %>
+	
+	<%
+			//Controlling the Back Button after Log_out
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");//HTTP 1.1
+			response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+			response.setHeader("Expires", "0"); //Proxies
+	%>
 	<br><br><br>
 	<!-- Background Animation -->	
 	<div class="bg"></div>

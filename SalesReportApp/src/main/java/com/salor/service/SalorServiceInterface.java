@@ -15,8 +15,9 @@ public interface SalorServiceInterface {
 	public String duplicateProductService(String productName,String userId);
 	public String insertProductService(SalorProductBean pdt,String userId);
 	public String insertProductSalesService(SalorProductBean pdt,String userId);
-	public String updateProductService(SalorProductBean pdt);
-	public String deleteProductService(SalorProductBean pdt);
+	public String updateProductService(SalorProductBean pdt,String userId);
+	public SalorProductBean fetchProductService(int recordno,String userId,String productId);
+	public String deleteProductService(SalorProductBean pdt,String userId);
 	public String deleteAllProductDetailsService(String pdtId,String userId);
 	public SalorProductBean[] visualizeReportService(String pdtId,String userId);
 	public String[] profileInfoService(String userId);
