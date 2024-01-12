@@ -27,7 +27,11 @@ Functionalities of the Application
 ---------------------------------
 1) Insertion of New Products
 ---------------------------------
-    This Feature of the Application enables an Organization to Insert any new Product of the Organization to it's Database. After the Insertion of the New Product to the Organization's Database a ProductID will be automatically generated along with the creation of a Table which will store the Sales Report of that Particular Product. Each Product will have an unique ProductID along with a Sales Table which will contain the Sales Report of that particular Product. The Product's Sales Table will be named according to the unique ProductID generated for the Product. The table will consists of the following columns : 
+    This Feature of the Application enables an Organization to Insert any new Product of the Organization to it's Database. 
+    After the Insertion of the New Product to the Organization's Database a ProductID will be automatically generated along with the creation of a Table which will store the Sales Report of that Particular Product. 
+    Each Product will have an unique ProductID along with a Sales Table which will contain the Sales Report of that particular Product. 
+    The Product's Sales Table will be named according to the unique ProductID generated for the Product. 
+    The table will consists of the following columns : 
         1) Cost Price Per Product
         2) Selling Price Per Product
         3) Total Cost Price
@@ -51,3 +55,15 @@ Functionalities of the Application
     If two records having the same record number is inserted then there will be an error as Record Number is acting like a primary key for each Sales record.
 
 
+3) Delete Product along with the Sales Report Associated with the Product
+----------------------------------------------------------------------------
+    This feature enables an Organization to delete all the details of the Sales of the product along with the Product from the Organization's database.
+    First we have to Select the product which we want to delete from the list of available products in the Organization.
+    After Selection of the product, the product from the Product List of the Organization will be deleted along with the table that is associated for the sales of the product.
+
+4) Vizualizing The Sales Report of a particular product
+----------------------------------------------------------
+    This feature enables an Organization to View the Sales report of a particular Product selected from the productList of the Organization.
+    After the selection of the product from the product list the required product's Sales is displayed.
+    The Organization can also filter the data from the Product's Sales Report based on the dates in the Sales Report.
+    
