@@ -20,17 +20,26 @@ Technologies Used
 --------------------------------
 Purpose of the Application
 --------------------------------
-Salor Application is a Sales Report Maker and Visualizing the Sales Report of that Organization. The Organization can ADD and DELETE products to their database and can add Sales of each corresponding products.The Organization can editand delete the Sales Report of the products, filter the Sales Report according to the Dates (Anually and Monthly Basis).
+Salor Application is a Sales Report Maker and Visualizing the Sales Report of that 
+Organization. The Organization can ADD and DELETE products to their database and can 
+add Sales of each corresponding products.The Organization can editand delete the Sales 
+Report of the products, filter the Sales Report according to the Dates (Anually and 
+Monthly Basis).
 
 ---------------------------------
 Functionalities of the Application
 ---------------------------------
 1) Insertion of New Products
 ---------------------------------
-    This Feature of the Application enables an Organization to Insert any new Product of the Organization to it's Database. 
-    After the Insertion of the New Product to the Organization's Database a ProductID will be automatically generated along with the creation of a Table which will store the Sales Report of that Particular Product. 
-    Each Product will have an unique ProductID along with a Sales Table which will contain the Sales Report of that particular Product. 
-    The Product's Sales Table will be named according to the unique ProductID generated for the Product. 
+    This Feature of the Application enables an Organization to Insert any new Product 
+    of the Organization to it's Database. 
+    After the Insertion of the New Product to the Organization's Database a ProductID 
+    will be automatically generated along with the creation of a Table which will 
+    store the Sales Report of that Particular Product. 
+    Each Product will have an unique ProductID along with a Sales Table which will 
+    contain the Sales Report of that particular Product. 
+    The Product's Sales Table will be named according to the unique ProductID 
+    generated for the Product. 
     The table will consists of the following columns : 
         1) Cost Price Per Product
         2) Selling Price Per Product
@@ -46,24 +55,64 @@ Functionalities of the Application
 
 2) Insertion of the Product's Sales
 ---------------------------------------
-    This Feature enables one Organizatiion to Insert the Sales Records of any particular Product. 
-    The User have to provide which product's Sales record he/she wants to insert from the list of product's available in their Organization. 
-    Then they have to provide the Record number, Cost Price Per Product, Selling Price per Product, Quantity Bought/Manufactured, Quantity Sold of that Particular Lot, Date on which that Particular Stock was bought/manufactured & Date on which that entered quantity was sold for that particular Stock. 
-    After giving these Details The Total Cost of Production, Total Sales, Net Profit / Net Loss will be calculated and the Sales record provided by the User will be Added to the table created for that particular Product. 
+    This Feature enables one Organizatiion to Insert the Sales Records of any 
+    particular Product. 
+    The User have to provide which product's Sales record he/she wants to insert from 
+    the list of product's available in their Organization. 
+    Then they have to provide the Record number, Cost Price Per Product, Selling Price 
+    per Product, Quantity Bought/Manufactured, Quantity Sold of that Particular Lot, 
+    Date on which that Particular Stock was bought/manufactured & Date on which that 
+    entered quantity was sold for that particular Stock. 
+    After giving these Details The Total Cost of Production, Total Sales, Net Profit / 
+    Net Loss will be calculated and the Sales record provided by the User will be 
+    Added to the table created for that particular Product. 
     After Adding the Record Successfully appropriate message will be given in the Screen. 
     NOTE : The Record Number must be unique for each and every record. 
-    If two records having the same record number is inserted then there will be an error as Record Number is acting like a primary key for each Sales record.
+    If two records having the same record number is inserted then there will be an 
+    error as Record Number is acting like a primary key for each Sales record.
 
 
 3) Delete Product along with the Sales Report Associated with the Product
 ----------------------------------------------------------------------------
-    This feature enables an Organization to delete all the details of the Sales of the product along with the Product from the Organization's database.
-    First we have to Select the product which we want to delete from the list of available products in the Organization.
-    After Selection of the product, the product from the Product List of the Organization will be deleted along with the table that is associated for the sales of the product.
+    This feature enables an Organization to delete all the details of the Sales of the 
+    product along with the Product from the Organization's database.
+    First we have to Select the product which we want to delete from the list of 
+    available products in the Organization.
+    After Selection of the product, the product from the Product List of the 
+    Organization will be deleted along with the table that is associated for the sales 
+    of the product.
 
 4) Vizualizing The Sales Report of a particular product
 ----------------------------------------------------------
-    This feature enables an Organization to View the Sales report of a particular Product selected from the productList of the Organization.
-    After the selection of the product from the product list the required product's Sales is displayed.
-    The Organization can also filter the data from the Product's Sales Report based on the dates in the Sales Report.
-    
+    This feature enables an Organization to View the Sales report of a particular 
+    Product selected from the productList of the Organization.
+    After the selection of the product from the product list the required product's 
+    Sales is displayed.
+    The Organization can also filter the data from the Product's Sales Report based on 
+    the dates in the Sales Report.
+    The Organization can view sales of each and every product.
+
+5) Update and Delete Sales Record of a product
+-------------------------------------------------
+    This feature enables the Organization to Update and Delete the Sales Record of a product.
+    After the selection of the product from the product list of the Organization
+    the full Sales Report of that particular product will be displayed along with
+    options for Editing and Deleting the Sales Record. 
+    When the Edit Option is clicked, it will be redirected to a page where the user 
+    will have to enter the updated sales details for that particular sale of the 
+    product and then click on update option.
+    The Sale Record of that Product will be Updated.
+    When the Delete Option is clicked then it will delete that particular Sale record 
+    of that product and a new Sales Report for that product will be generated.
+
+6) User Authentication
+--------------------------
+    This feature of the Application enables an user to use the Application securely.
+    When the user is registered into this Application for the First time then after
+    filling up the required details for registration an unique UserId will be generated
+    which will be used for every time the user wants to log in into the site. 
+    Based on the UserId generated / assigned, there will be a seperate database named 
+    with the UserId which is also called as the Organization's Database. 
+    This Database will contain all the list of products present in the organization 
+    along with seperate tables for storing the Sales Report for Each and Everey Product
+    of the Organization.
