@@ -26,5 +26,22 @@ Salor Application is a Sales Report Maker and Visualizing the Sales Report of th
 Functionalities of the Application
 ---------------------------------
 1) Insertion of New Products
-================================
-    This Feature of the Application enables an Organization to Insert any new Product of the Organization to it's Database.
+---------------------------------
+    This Feature of the Application enables an Organization to Insert any new Product of the Organization to it's Database. After the Insertion of the New Product to the Organization's Database a ProductID will be automatically generated along with the creation of a Table which will store the Sales Report of that Particular Product. Each Product will have an unique ProductID along with a Sales Table which will contain the Sales Report of that particular Product. The Product's Sales Table will be named according to the unique ProductID generated for the Product. The table will consists of the following columns : 
+        1) Cost Price Per Product
+        2) Selling Price Per Product
+        3) Total Cost Price
+        4) Total Sales
+        5) Quantity Bought / Manufactured
+        6) Quantity Sold
+        7) Net Profit on the Particular Stock
+        8) Net Loss on that Particular Stock
+        9) Date on which that Particular Stock of product was bought/Manufactured
+        10) Date on which that particular Stock of product was sold.(It may be after one month,two months etc..)
+        11) Lastly a Record Number which will be associated to each and every Sales Record.
+
+2) Insertion of the Product's Sales
+---------------------------------------
+    This Feature enables one Organizatiion to Insert the Sales Records of any particular Product. The User have to provide which product's Sales record he/she wants to insert from the list of product's available in their Organization. Then they have to provide the Record number, Cost Price Per Product, Selling Price per Product, Quantity Bought/Manufactured, Quantity Sold of that Particular Lot, Date on which that Particular Stock was bought/manufactured & Date on which that entered quantity was sold for that particular Stock. After giving these Details The Total Cost of Production, Total Sales, Net Profit / Net Loss will be calculated and the Sales record provided by the User will be Added to the table created for that particular Product. After Adding the Record Successfully appropriate message will be given in the Screen. NOTE : The Record Number must be unique for each and every record. If two records having the same record number is inserted then there will be an error as Record Number is acting like a primary key for each Sales record.
+
+
